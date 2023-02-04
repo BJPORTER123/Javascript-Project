@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import BucketList from '../components/BucketList';
 import CountryDetail from '../components/CountryDetail';
 import CountryList from '../components/CountryList';
+import NavBar from '../components/NavBar';
 import VisitedList from '../components/VisitedList';
 
 const MainContainer = () => {
@@ -37,18 +38,17 @@ const MainContainer = () => {
 
     return (
         <>
-            <p>   
+            <NavBar/>
             <CountryList countriesSlice={countries.slice(0, 20)} countries={countries} onCountryClicked={onCountryClicked} /> 
-            </p>
-            <p><h3>Country Card:</h3>
+            <h3>Country Card:</h3>
             {selectedCountry ? <CountryDetail selectedCountry={selectedCountry} addToBucket={addToBucket} addToVisited={addToVisited} /> : null} 
-            </p>
-            <p><h3>Bucket List:</h3>
+        
+            <h3>Bucket List:</h3>
             {bucketList ? <BucketList bucketList={bucketList} /> : null} 
-            </p>
-            <p><h3>Visited List:</h3>
+            
+            <h3>Visited List:</h3>
             {visitedList ? <VisitedList visitedList={visitedList} /> : null} 
-            </p>
+        
             
         </>
 

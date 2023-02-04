@@ -1,0 +1,24 @@
+
+
+.nav-li{
+    font-size: 2rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    list-style: none;
+    gap: 3rem ;
+    padding: 8px;
+    background: linear-gradient(to right,#bdc3c7,#2c3e50 );
+}
+
+.nav-link{
+    text-decoration: none;
+    color: azure;
+}
+.nav-link:visited{
+    color: azure;
+}
+
+
+
+    

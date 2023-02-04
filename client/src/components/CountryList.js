@@ -9,7 +9,10 @@ const CountryList = ({countriesSlice, onCountryClicked}) => {
 
     return (  
         <>
+        <h3>Countries to Visit</h3>
+        <section>
         {CountryItems}
+        </section>
         </>
     );
 }
