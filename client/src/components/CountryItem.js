@@ -1,14 +1,15 @@
-const CountryItem = ({country,onCountryClicked}) => {
+const CountryItem = ({ country, onCountryClicked }) => {
 
-    const handleClicked =()=>{
+    const handleClicked = () => {
         onCountryClicked(country)
     }
 
-    return (  
+    return (
         <li onClick={handleClicked}>
-           {country.name.common}
+            {country.name.common}
+            {country.flag}
         </li>
     );
 }
- 
+
 export default CountryItem;
