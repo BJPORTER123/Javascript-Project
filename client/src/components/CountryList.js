@@ -1,9 +1,9 @@
 import CountryItem from "./CountryItem";
 
-const CountryList = ({countriesSlice}) => {
+const CountryList = ({countriesSlice, onCountryClicked}) => {
 
     const CountryItems = countriesSlice.map((country)=>{
-        return <CountryItem country={country}/>
+        return <CountryItem country={country} onCountryClicked={onCountryClicked}/>
     })
 
 
