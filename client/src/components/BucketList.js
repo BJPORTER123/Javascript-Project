@@ -1,12 +1,11 @@
 import CountryItem from "./CountryItem";
 
-const BucketList = ({ bucketList, onCountryClicked }) => {
+const BucketList = ({ bucketList, onCountryClicked, handleDelete }) => {
 
-    const deleteBucketItem = 1
 
     const BucketCountries = bucketList.map((country)=>{
 
-        return <CountryItem country={country} key={country.tld} deleteBucketItem={true} onCountryClicked={onCountryClicked}/>
+        return <CountryItem country={country} key={country.tld} bucketDeleteButton={true} onCountryClicked={onCountryClicked} handleDelete={handleDelete}/>
     })
 
 

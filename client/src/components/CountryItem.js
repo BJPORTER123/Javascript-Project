@@ -1,7 +1,6 @@
 import React from 'react';
 import './CountryItem.css'
 import styled from 'styled-components';
-import { deleteBucketCountry } from '../services/CountryService';
 
 
 const Flag = styled.p`
@@ -20,25 +19,17 @@ const TextContainer = styled.div`
     font-size: 0.85rem;
 `;
 
-function CountryItem({ country, onCountryClicked, deleteBucketItem }) {
+function CountryItem({ country, onCountryClicked, bucketDeleteButton, handleDelete }) {
 
 
     const handleClicked = () => {
         onCountryClicked(country)
     }
-
-   
-    const handleDelete = () => {
-
-            deleteBucketCountry()
-            .then(()=>{
-            // removeBucketCountry()
-        })
         
 
-    }
+    
     const deleteButton = () => {
-        if(deleteBucketItem){ 
+        if(bucketDeleteButton){ 
             return <button onClick={handleDelete}>Delete</button>
         }
     }
