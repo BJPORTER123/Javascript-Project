@@ -18,7 +18,13 @@ const TextContainer = styled.div`
     font-size: 0.85rem;
 `;
 
-function Country({ country, handleClicked }) {
+function CountryItem({ country, onCountryClicked }) {
+
+
+    const handleClicked = () => {
+        onCountryClicked(country)
+    }
+
     return (
         <li className="country-item" onClick={handleClicked}>
             <TextContainer>
@@ -29,4 +35,6 @@ function Country({ country, handleClicked }) {
     );
 }
 
-export default Country;
+
+
+export default CountryItem;

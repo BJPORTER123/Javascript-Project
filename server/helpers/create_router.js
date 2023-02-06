@@ -16,8 +16,21 @@ const createRouter = function(collection) {
         })
     });
 
+    router.post('/', (req, res) => {
+        const newListItem = req.body
+        collection
+        .insertOne(newListItem)
+        .then((result) => {
+            // res.json(result.insertId)
+            res.json(result)
+        })
+        .catch((err) => {
+            console.error(err);
+            res.status(500);
+            res.json({ status: 500, error: err });
+        })
+    })
     
-
     
     return router
 }
