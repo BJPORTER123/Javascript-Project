@@ -1,4 +1,4 @@
-import { deleteBucketCountry } from '../services/CountryService';
+import { deleteBucketCountry, deleteVisitedCountry } from '../services/CountryService';
 import React from 'react';
 import './CountryItem.css'
 import styled from 'styled-components';
@@ -20,7 +20,7 @@ const TextContainer = styled.div`
     font-size: 0.85rem;
 `;
 
-function CountryItem({removeCountry, country, onCountryClicked, bucketDeleteButton}) {
+function CountryItem({removeBucketCountry, country, onCountryClicked, bucketDeleteButton, removeVisitedCountry, visitedDeleteButton}) {
 
 
     const id = country.tld
@@ -33,15 +33,25 @@ function CountryItem({removeCountry, country, onCountryClicked, bucketDeleteButt
     
     const deleteButton = () => {
         if(bucketDeleteButton){ 
-            return <button onClick={handleDelete}>Delete</button>
+            return <button onClick={handleBucketDelete}>Delete</button>
+        }
+        else if (visitedDeleteButton){ 
+            return <button onClick={handleVisitedDelete}>Delete</button>
         }
     }
 
-    const handleDelete = () => {
+    const handleBucketDelete = () => {
         deleteBucketCountry(id)
             .then(()=>{
-                removeCountry(id)
+                removeBucketCountry(id)
     })
+}
+
+const handleVisitedDelete = () => {
+    deleteVisitedCountry(id)
+        .then(()=>{
+            removeVisitedCountry(id)
+})
 }
 
     return (
