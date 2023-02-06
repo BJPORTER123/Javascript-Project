@@ -5,11 +5,12 @@ const CountryDetail = ({ selectedCountry, addToBucket, addToVisited }) => {
 
     // const [countryData, setCountryData] = useState({})
 
-    const onClick = () =>{
+    const onClick = () => {
         // setCountryData(selectedCountry)
         console.log(typeof addToBucket)
-        postCountry(selectedCountry).then((data)=>{
-            addToBucket(data);
+        postCountry(selectedCountry)
+        .then(()=>{
+            addToBucket(selectedCountry)
         })
 
     }
