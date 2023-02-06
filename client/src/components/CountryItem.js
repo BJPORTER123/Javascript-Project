@@ -1,6 +1,8 @@
 import React from 'react';
 import './CountryItem.css'
 import styled from 'styled-components';
+import { deleteBucketCountry } from '../services/CountryService';
+
 
 const Flag = styled.p`
     display: inline-block;
@@ -37,7 +39,7 @@ function CountryItem({ country, onCountryClicked, deleteBucketItem }) {
     }
     const deleteButton = () => {
         if(deleteBucketItem){ 
-            return <button onClick={handleDelte}>Delete</button>
+            return <button onClick={handleDelete}>Delete</button>
         }
     }
 
