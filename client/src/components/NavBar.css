@@ -1,0 +1,55 @@
+
+  .nav-bar {
+    background: linear-gradient(to right, #2b5876, #4e4376);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+  }
+  
+  .nav-li {
+    font-size: 2rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    list-style: none;
+    gap: 1rem;
+    padding: 8px;
+    margin: 0;
+  }
+  
+  .nav-link {
+    text-decoration: none;
+    color: azure;
+    font-weight: 400;
+    margin-right: 1rem;
+  }
+  
+  .nav-link:hover {
+    font-weight: 700;
+  }
+  
+  .nav-link:visited {
+    color: azure;
+  }
+  
+  #globe-img {
+    margin-right: 0.2rem;
+  }
+  
+  #globe-img:hover {
+    animation: rotate 3s linear infinite;
+  }
+  
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+
+
+    
