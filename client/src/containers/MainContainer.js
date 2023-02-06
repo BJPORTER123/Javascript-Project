@@ -60,7 +60,7 @@ const MainContainer = () => {
             <NavBar />
             <CountryList countriesSlice={countries.slice(0, 20)} countries={countries} onCountryClicked={onCountryClicked} />
             <h3>Country Card:</h3>
-            {selectedCountry ? <CountryDetail selectedCountry={selectedCountry} addToBucket={addToBucket} addToVisited={addToVisited} bucketList={bucketList} /> : null}
+            {selectedCountry ? <CountryDetail selectedCountry={selectedCountry} addToBucket={addToBucket} addToVisited={addToVisited} bucketList={bucketList} visitedList={visitedList} /> : null}
 
             <h3>Bucket List:</h3>
             {bucketList ? <BucketList bucketList={bucketList} /> : null}

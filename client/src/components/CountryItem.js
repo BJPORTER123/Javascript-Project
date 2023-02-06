@@ -18,11 +18,17 @@ const TextContainer = styled.div`
     font-size: 0.85rem;
 `;
 
-function CountryItem({ country, onCountryClicked }) {
+function CountryItem({ country, onCountryClicked, deleteBucketItem }) {
 
 
     const handleClicked = () => {
         onCountryClicked(country)
+    }
+
+    const deleteButton = () => {
+        if(deleteBucketItem){ 
+            return <button>Delete</button>
+        }
     }
 
     return (
@@ -31,6 +37,8 @@ function CountryItem({ country, onCountryClicked }) {
                 <h4>{country.name.common}</h4>
             </TextContainer>
             <Flag>{country.flag}</Flag>
+            {deleteButton()}
+            
         </li>
     );
 }

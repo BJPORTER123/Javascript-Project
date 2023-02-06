@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { postBucketCountry, postVisitedCountry, } from "../services/CountryService.js";
+import VisitedList from "./VisitedList.js";
 
-const CountryDetail = ({ selectedCountry, addToBucket, addToVisited, bucketList }) => {
+const CountryDetail = ({ selectedCountry, addToBucket, addToVisited, bucketList, visitedList }) => {
 
 
 
@@ -21,10 +22,13 @@ const CountryDetail = ({ selectedCountry, addToBucket, addToVisited, bucketList 
     }
 
     const onVisitedClick = () => {
-        postVisitedCountry(selectedCountry)
-        .then(()=>{
+        if(visitedList.filter(country => country.tld === selectedCountry.tld).length === 0){
+            postVisitedCountry(selectedCountry)
+            .then(()=>{
             addToVisited(selectedCountry)
         })
+        }
+        
 
     }
 
