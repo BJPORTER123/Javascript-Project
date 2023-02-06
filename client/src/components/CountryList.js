@@ -8,6 +8,7 @@ const CountryList = ({countriesSlice, onCountryClicked}) => {
         return <CountryItem country={country} onCountryClicked={onCountryClicked} key={index}/>
     })
 
+        
 
     return (  
         <>
