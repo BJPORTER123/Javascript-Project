@@ -7,15 +7,15 @@ const Flag = styled.p`
     position: absolute;
     top: 15px;
     right: 50px;
-    transform: scale(5);
+    transform: scale(4.5);
 `;
 
 const TextContainer = styled.div`
     width: 80%;
-    padding-right: 60px;
+    padding-right: 70px;
     color: rgb(1, 8, 8);
     background-color: #fcfeff8f;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
 `;
 
 function Country({ country, handleClicked }) {
