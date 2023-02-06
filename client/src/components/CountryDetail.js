@@ -1,14 +1,22 @@
 import { useState } from "react";
 import { postBucketCountry, postVisitedCountry, } from "../services/CountryService.js";
-const CountryDetail = ({ selectedCountry, addToBucket, addToVisited }) => {
+
+const CountryDetail = ({ selectedCountry, addToBucket, addToVisited, bucketList }) => {
 
 
 
     const onBucketClick = () => {
-        postBucketCountry(selectedCountry)
-        .then(()=>{
+        if(bucketList.filter(country => country.tld === selectedCountry.tld).length === 0) {
+            postBucketCountry(selectedCountry)
+            .then(()=>{
             addToBucket(selectedCountry)
         })
+        }
+        
+        // if(selectedCountry.tld !== )
+        //for countryId in bucket list, if countryId ==== selectedId don't add, else Add to bucket list
+        //if selectedCountry(tld) is not in bucketList, add selectedCountry to bucketList
+        
 
     }
 
