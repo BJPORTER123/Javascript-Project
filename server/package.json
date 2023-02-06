@@ -6,14 +6,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "server:dev":"nodemon server.js",
+    "server:dev": "nodemon server.js",
     "seeds": "mongosh < ./db/seeds.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "mongodb": "^5.0.0"
   },
   "devDependencies": {
     "cors": "^2.8.5",
