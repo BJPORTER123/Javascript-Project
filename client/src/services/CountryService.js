@@ -34,8 +34,9 @@ export const postVisitedCountry = (payload) => {
         .then(res => res.json())
 }
 
-export const deleteBucketCountry = () => {
+export const deleteBucketCountry = (id) => {
     return fetch(bucketURL, {
-        method: 'DELETE'
+        method: 'DELETE',
+        body: JSON.stringify({ id })
     });
 }

@@ -4,7 +4,7 @@ import CountryDetail from '../components/CountryDetail';
 import CountryList from '../components/CountryList';
 import NavBar from '../components/NavBar';
 import VisitedList from '../components/VisitedList';
-import { getBucketCountries, getVisitedCountries, postCountry, deleteBucketCountry } from '../services/CountryService';
+import { getBucketCountries, getVisitedCountries, postCountry} from '../services/CountryService';
 
 
 const MainContainer = () => {
@@ -56,19 +56,10 @@ const MainContainer = () => {
     }
 
     
-
-    const handleDelete = () => {
-        deleteBucketCountry()
-            .then(()=>{
-                removeCountry()
-    })
-
-    const removeCountry = () => {
-        const countriesToKeep = bucketList.filter(country => country !== selectedCountry)
-        // console.log(selectedCountry)
+    const removeCountry = (id) => {
+        const countriesToKeep = bucketList.filter(country => country.tld !== id)
         setBucketList(countriesToKeep)
       }
-}
 
     return (
         <>
@@ -78,7 +69,7 @@ const MainContainer = () => {
             {selectedCountry ? <CountryDetail selectedCountry={selectedCountry} addToBucket={addToBucket} addToVisited={addToVisited} bucketList={bucketList} visitedList={visitedList} /> : null}
 
             <h3>Bucket List:</h3>
-            {bucketList ? <BucketList bucketList={bucketList} onCountryClicked={onCountryClicked} handleDelete={handleDelete}/> : null}
+            {bucketList ? <BucketList bucketList={bucketList} onCountryClicked={onCountryClicked} removeCountry={removeCountry}/> : null}
 
             <h3>Visited List:</h3>
             {visitedList ? <VisitedList visitedList={visitedList} /> : null}

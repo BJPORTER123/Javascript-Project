@@ -5,7 +5,6 @@ import VisitedList from "./VisitedList.js";
 const CountryDetail = ({ selectedCountry, addToBucket, addToVisited, bucketList, visitedList }) => {
 
 
-
     const onBucketClick = () => {
         if(bucketList.filter(country => country.tld === selectedCountry.tld).length === 0) {
             postBucketCountry(selectedCountry)
