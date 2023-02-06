@@ -63,7 +63,7 @@ const MainContainer = () => {
             {selectedCountry ? <CountryDetail selectedCountry={selectedCountry} addToBucket={addToBucket} addToVisited={addToVisited} bucketList={bucketList} visitedList={visitedList} /> : null}
 
             <h3>Bucket List:</h3>
-            {bucketList ? <BucketList bucketList={bucketList} /> : null}
+            {bucketList ? <BucketList bucketList={bucketList} onCountryClicked={onCountryClicked}/> : null}
 
             <h3>Visited List:</h3>
             {visitedList ? <VisitedList visitedList={visitedList} /> : null}

@@ -13,11 +13,6 @@ const CountryDetail = ({ selectedCountry, addToBucket, addToVisited, bucketList,
             addToBucket(selectedCountry)
         })
         }
-        
-        // if(selectedCountry.tld !== )
-        //for countryId in bucket list, if countryId ==== selectedId don't add, else Add to bucket list
-        //if selectedCountry(tld) is not in bucketList, add selectedCountry to bucketList
-        
 
     }
 

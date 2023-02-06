@@ -25,9 +25,19 @@ function CountryItem({ country, onCountryClicked, deleteBucketItem }) {
         onCountryClicked(country)
     }
 
+   
+    const handleDelete = () => {
+
+            deleteBucketCountry()
+            .then(()=>{
+            // removeBucketCountry()
+        })
+        
+
+    }
     const deleteButton = () => {
         if(deleteBucketItem){ 
-            return <button>Delete</button>
+            return <button onClick={handleDelte}>Delete</button>
         }
     }
 
