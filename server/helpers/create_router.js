@@ -4,7 +4,7 @@ const createRouter = function(collection) {
 
     const router = express.Router();
 
-    router.get('/home', (req, res) => {
+    router.get('/', (req, res) => {
         collection
         .find()
         .toArray()
@@ -16,12 +16,13 @@ const createRouter = function(collection) {
         })
     });
 
-    router.post('/home', (req, res) => {
+    router.post('/', (req, res) => {
         const newListItem = req.body
         collection
         .insertOne(newListItem)
         .then((result) => {
-            res.json(result.insertId)
+            // res.json(result.insertId)
+            res.json(result)
         })
         .catch((err) => {
             console.error(err);
