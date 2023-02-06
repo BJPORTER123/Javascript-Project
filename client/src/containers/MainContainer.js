@@ -4,7 +4,7 @@ import CountryDetail from '../components/CountryDetail';
 import CountryList from '../components/CountryList';
 import NavBar from '../components/NavBar';
 import VisitedList from '../components/VisitedList';
-import { getCountries, postCountry } from '../services/CountryService';
+import { getBucketCountries, getVisitedCountries, postCountry } from '../services/CountryService';
 
 const MainContainer = () => {
     const [countries, setCountries] = useState([]);
@@ -20,12 +20,20 @@ const MainContainer = () => {
     }, []);
 
     useEffect(() => {
-       getCountries()
-       .then(allCountries => {
-        setBucketList(allCountries)
+       getBucketCountries()
+       .then(bucketCountries => {
+        setBucketList(bucketCountries)
        })
 
     }, []);
+
+    useEffect(() => {
+        getVisitedCountries()
+        .then(visitedCountries => {
+         setVisitedList(visitedCountries)
+        })
+ 
+     }, []);
 
     const onCountryClicked = (country) => {
         setSelectedCountry(country)

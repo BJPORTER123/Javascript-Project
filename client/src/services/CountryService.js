@@ -1,12 +1,30 @@
 const baseURL = 'http://localhost:9000/api/countries/';
+const bucketURL = 'http://localhost:9000/api/countries/BucketList';
+const visitedURL = 'http://localhost:9000/api/countries/VisitedList';
 
-export const getCountries = () => {
-    return fetch(baseURL)
+export const getBucketCountries = () => {
+    return fetch(bucketURL)
     .then(res => res.json())
 }
 
-export const postCountry = (payload) => {
-    return fetch(baseURL, {
+export const getVisitedCountries = () => {
+    return fetch(visitedURL)
+    .then(res => res.json())
+}
+
+
+
+export const postBucketCountry = (payload) => {
+    return fetch(bucketURL, {
+        method: 'POST',
+        body: JSON.stringify(payload),
+        headers: { 'Content-Type': 'application/json' }
+    })
+    .then(res => res.json())
+} 
+
+export const postVisitedCountry = (payload) => {
+    return fetch(visitedURL, {
         method: 'POST',
         body: JSON.stringify(payload),
         headers: { 'Content-Type': 'application/json' }

@@ -1,15 +1,21 @@
 import { useState } from "react";
-import { postCountry } from "../services/CountryService.js";
+import { postBucketCountry, postVisitedCountry, } from "../services/CountryService.js";
 const CountryDetail = ({ selectedCountry, addToBucket, addToVisited }) => {
 
 
-    // const [countryData, setCountryData] = useState({})
 
-    const onClick = () => {
-        // setCountryData(selectedCountry)
-        postCountry(selectedCountry)
+    const onBucketClick = () => {
+        postBucketCountry(selectedCountry)
         .then(()=>{
             addToBucket(selectedCountry)
+        })
+
+    }
+
+    const onVisitedClick = () => {
+        postVisitedCountry(selectedCountry)
+        .then(()=>{
+            addToVisited(selectedCountry)
         })
 
     }
@@ -24,8 +30,8 @@ const CountryDetail = ({ selectedCountry, addToBucket, addToVisited }) => {
 
             </br>
             {selectedCountry.flag}
-            <button type="Submit" value='add-to-bucket' onClick={onClick} >Bucket List</button>
-            <button type="Submit" value='add-to-visited' >Visited List</button>
+            <button type="Submit" value='add-to-bucket' onClick={onBucketClick} >Bucket List</button>
+            <button type="Submit" value='add-to-visited' onClick={onVisitedClick}>Visited List</button>
             
 
         </>
