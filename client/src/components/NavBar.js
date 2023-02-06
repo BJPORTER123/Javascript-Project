@@ -5,11 +5,11 @@ import "./NavBar.css"
 const NavBar = () => {
     return (  
         <>
-        <nav>
+        <nav className="nav-bar">
             <ul className="nav-li">
             <li>
                 <Link className="nav-link" to="/">
-                    <img src={globe} alt="Logo" width="55" height="55" />
+                    <img id= "globe-img" src={globe} alt="Logo" width="55" height="55" />
                 </Link>
             </li>
             <li>
