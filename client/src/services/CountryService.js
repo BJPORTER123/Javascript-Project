@@ -40,3 +40,10 @@ export const deleteBucketCountry = (id) => {
         body: JSON.stringify({ id })
     });
 }
+
+export const deleteVisitedCountry = (id) => {
+    return fetch(visitedURL, {
+        method: 'DELETE',
+        body: JSON.stringify({ id })
+    });
+}

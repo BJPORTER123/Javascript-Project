@@ -56,9 +56,14 @@ const MainContainer = () => {
     }
 
     
-    const removeCountry = (id) => {
+    const removeBucketCountry = (id) => {
         const countriesToKeep = bucketList.filter(country => country.tld !== id)
         setBucketList(countriesToKeep)
+      }
+
+      const removeVisitedCountry = (id) => {
+        const countriesToKeep = visitedList.filter(country => country.tld !== id)
+        setVisitedList(countriesToKeep)
       }
 
     return (
@@ -69,10 +74,10 @@ const MainContainer = () => {
             {selectedCountry ? <CountryDetail selectedCountry={selectedCountry} addToBucket={addToBucket} addToVisited={addToVisited} bucketList={bucketList} visitedList={visitedList} /> : null}
 
             <h3>Bucket List:</h3>
-            {bucketList ? <BucketList bucketList={bucketList} onCountryClicked={onCountryClicked} removeCountry={removeCountry}/> : null}
+            {bucketList ? <BucketList bucketList={bucketList} onCountryClicked={onCountryClicked} removeBucketCountry={removeBucketCountry}/> : null}
 
             <h3>Visited List:</h3>
-            {visitedList ? <VisitedList visitedList={visitedList} /> : null}
+            {visitedList ? <VisitedList visitedList={visitedList} onCountryClicked={onCountryClicked} removeVisitedCountry={removeVisitedCountry}/> : null}
 
 
         </>
