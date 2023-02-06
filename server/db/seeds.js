@@ -2,9 +2,6 @@ use CountryDatabase
 
 db.dropDatabase()
 
-db.CountryList.insertMany([
-    {
-    name: "Scotland",
-    comments: "Great place!"
-    }
-])
+db.BucketList.insertMany([{name: "Turkey"}])
+
+db.VisitedList.insertMany([{name: "Turkey"}])

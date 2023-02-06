@@ -11,9 +11,9 @@ app.use(express.json())
 MongoClient.connect('mongodb://127.0.0.1:27017', {useUnifiedTopology:true})
     .then((client) => {
         const db = client.db('CountryDatabase')
-        const countryCollection = db.collection('CountryList')
-        const countryRouter = createRouter(countryCollection);
-        app.use('/api/countries', countryRouter);
+        const bucketListCollection = db.collection('BucketList')
+        const bucketListRouter = createRouter(bucketListCollection);
+        app.use('/api/countries', bucketListRouter);
     })
     .catch(console.error);
     
