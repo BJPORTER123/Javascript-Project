@@ -4,8 +4,7 @@ import CountryDetail from '../components/CountryDetail';
 import CountryList from '../components/CountryList';
 import NavBar from '../components/NavBar';
 import VisitedList from '../components/VisitedList';
-import { getBucketCountries, getVisitedCountries, postCountry } from '../services/CountryService';
-import { deleteBucketCountry } from '../services/CountryService';
+import { getBucketCountries, getVisitedCountries, postCountry, deleteBucketCountry } from '../services/CountryService';
 
 
 const MainContainer = () => {
@@ -56,18 +55,19 @@ const MainContainer = () => {
         setVisitedList(copyOfVisited)
     }
 
+    
+
     const handleDelete = () => {
         deleteBucketCountry()
             .then(()=>{
-                removeBucketCountry()
+                removeCountry()
     })
-}
 
-const handleDelete = () => {
-    deleteBooking(hotelBooking._id)
-        .then(() => {
-            removeBooking(hotelBooking._id)
-    })
+    const removeCountry = () => {
+        const countriesToKeep = bucketList.filter(country => country !== selectedCountry)
+        // console.log(selectedCountry)
+        setBucketList(countriesToKeep)
+      }
 }
 
     return (

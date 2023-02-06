@@ -8,6 +8,8 @@ const BucketList = ({ bucketList, onCountryClicked, handleDelete }) => {
         return <CountryItem country={country} key={country.tld} bucketDeleteButton={true} onCountryClicked={onCountryClicked} handleDelete={handleDelete}/>
     })
 
+    
+
 
     return (  
         <>
