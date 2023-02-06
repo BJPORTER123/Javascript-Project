@@ -4,7 +4,7 @@ const createRouter = function(collection) {
 
     const router = express.Router();
 
-    router.get('/', (req, res) => {
+    router.get('/home', (req, res) => {
         collection
         .find()
         .toArray()
@@ -16,7 +16,7 @@ const createRouter = function(collection) {
         })
     });
 
-    router.post('/', (req, res) => {
+    router.post('/home', (req, res) => {
         const newListItem = req.body
         collection
         .insertOne(newListItem)
