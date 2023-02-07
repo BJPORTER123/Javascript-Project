@@ -30,8 +30,8 @@ const CountryDetail = ({ selectedCountry, addToBucket, addToVisited, bucketList,
             {selectedCountry.capital} <br>
             </br>
             {selectedCountry.flag}
-            <button type="Submit" value='add-to-bucket' onClick={onBucketClick} >Bucket List</button>
-            <button type="Submit" value='add-to-visited' onClick={onVisitedClick}>Visited List</button>
+            <button type="Submit" value='add-to-bucket' onClick={onBucketClick} >Add Bucket</button>
+            <button type="Submit" value='add-to-visited' onClick={onVisitedClick}>Add Visited</button>
         </>
     );
 }

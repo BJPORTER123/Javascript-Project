@@ -34,7 +34,6 @@ const App = () => {
         fetch('https://restcountries.com/v3.1/all')
             .then(res => res.json())
             .then(data => setCountries(data))
-
     }, []);
 
     useEffect(() => {
@@ -42,7 +41,6 @@ const App = () => {
             .then(bucketCountries => {
                 setBucketList(bucketCountries)
             })
-
     }, []);
 
     useEffect(() => {
@@ -50,7 +48,6 @@ const App = () => {
             .then(visitedCountries => {
                 setVisitedList(visitedCountries)
             })
-
     }, []);
 
     const onSubmitSearch = (searchCountry) => {
@@ -68,35 +65,45 @@ const App = () => {
         setBucketList(copyOfBucket)
     }
 
-
-
     const addToVisited = (selectedCountry) => {
         const copyOfVisited = [...visitedList]
         copyOfVisited.push(selectedCountry)
         setVisitedList(copyOfVisited)
     }
 
-    
     const removeBucketCountry = (id) => {
         const countriesToKeep = bucketList.filter(country => country.cca2 !== id)
         setBucketList(countriesToKeep)
-      }
+    }
 
-      const removeVisitedCountry = (id) => {
+    const removeVisitedCountry = (id) => {
         const countriesToKeep = visitedList.filter(country => country.cca2 !== id)
         setVisitedList(countriesToKeep)
-      }
+    }
+    
     return (
-       <>
+        <>
         <Routes>
             <Route path="*" element={<NotFound/>}/>
             <Route exact path="/" element={<Title/>}/>
-            <Route exact path="/countries" element={<MainContainer onSubmitSearch={onSubmitSearch} countries={countries} onCountryClicked={onCountryClicked}/>}/>
-            <Route exact path="/bucket" element={ <BucketList bucketList={bucketList} onCountryClicked={onCountryClicked} removeBucketCountry={removeBucketCountry}/>}/>
-            <Route exact path="/visited" element={ <VisitedList visitedList={visitedList} onCountryClicked={onCountryClicked} removeVisitedCountry={removeVisitedCountry}/>}/>
-            <Route path="/countries/:id" element={<CountryDetail selectedCountry={selectedCountry} addToBucket={addToBucket} addToVisited={addToVisited} bucketList={bucketList} visitedList={visitedList}/>}/>
+
+            <Route exact path="/countries" element={
+            <MainContainer  onSubmitSearch={onSubmitSearch} countries={countries} onCountryClicked={onCountryClicked}/>
+            }/>
+
+            <Route exact path="/bucket" element={ 
+            <BucketList addToVisited={addToVisited} bucketList={bucketList} onCountryClicked={onCountryClicked} removeBucketCountry={removeBucketCountry}/>
+            }/>
+
+            <Route exact path="/visited" element={
+            <VisitedList visitedList={visitedList} onCountryClicked={onCountryClicked} removeVisitedCountry={removeVisitedCountry}/>
+            }/>
+
+            <Route path="/countries/:id" element={
+            <CountryDetail selectedCountry={selectedCountry} addToBucket={addToBucket} addToVisited={addToVisited} bucketList={bucketList} visitedList={visitedList}/>
+            }/>
         </Routes>
-       </>
+        </>
     );
 }
 
