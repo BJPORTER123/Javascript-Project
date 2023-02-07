@@ -9,7 +9,7 @@ const Title = () => {
             <nav>
                 <ul>
                 <li className="title-li">
-                    <Link className="title-link" to="/home">Enter</Link>
+                    <Link className="title-link" to="/countries">Enter</Link>
                 </li>
                 </ul>
             </nav>
