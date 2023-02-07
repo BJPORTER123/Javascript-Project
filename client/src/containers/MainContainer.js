@@ -4,6 +4,7 @@ import CountryDetail from '../components/CountryDetail';
 import CountryList from '../components/CountryList';
 import NavBar from '../components/NavBar';
 import VisitedList from '../components/VisitedList';
+import SearchBar from '../components/SearchBar';
 import { getBucketCountries, getVisitedCountries, postCountry} from '../services/CountryService';
 
 
@@ -69,6 +70,7 @@ const MainContainer = () => {
     return (
         <>
             <NavBar />
+            <SearchBar/>
             <CountryList countriesSlice={countries.slice(0, 20)} countries={countries} onCountryClicked={onCountryClicked} />
             <h3>Country Card:</h3>
             {selectedCountry ? <CountryDetail selectedCountry={selectedCountry} addToBucket={addToBucket} addToVisited={addToVisited} bucketList={bucketList} visitedList={visitedList} /> : null}
