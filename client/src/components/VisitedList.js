@@ -12,6 +12,7 @@ const VisitedList = ({ visitedList, removeVisitedCountry, onCountryClicked }) =>
     return (  
         <>
         <NavBar/>
+        <h2>Visited List</h2>
         {VisitedCountries}
         </>
     );
