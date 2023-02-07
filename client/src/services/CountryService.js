@@ -15,7 +15,7 @@ export const getVisitedCountries = () => {
 }
 
 export const putVisitedCountries = (payload) => {
-    return fetch(visitedURL + `/{payload._id}`, {
+    return fetch(visitedURL , {
         method: 'PUT',
         body: JSON.stringify(payload),
         headers: { 'Content-Type': 'application/json' }
