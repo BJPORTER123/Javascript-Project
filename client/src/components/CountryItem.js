@@ -20,14 +20,13 @@ const TextContainer = styled.div`
     font-size: 0.85rem;
 `;
 
-function CountryItem({ removeBucketCountry, country, onCountryClicked, bucketTrue, removeVisitedCountry, visitedTrue, addToVisited, bucketList, visitedList }) {
+function CountryItem({ removeBucketCountry, country, onCountryClicked, bucketTrue, removeVisitedCountry, visitedTrue, addToVisited, bucketList }) {
 
     const id = country.cca2
 
     const handleClicked = () => {
         onCountryClicked(country)
     }
-
 
     const deleteButton = () => {
         if (bucketTrue) {
@@ -69,7 +68,7 @@ function CountryItem({ removeBucketCountry, country, onCountryClicked, bucketTru
     return (
         <div>
             <li className="country-item" onClick={handleClicked}>
-                <Link to="/countries/:id">
+                <Link to={`/countries/${id}`}>
                     <TextContainer>
                         <h4>{country.name.common}</h4>
                     </TextContainer>
