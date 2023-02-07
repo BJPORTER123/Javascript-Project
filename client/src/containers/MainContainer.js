@@ -10,9 +10,21 @@ import { getBucketCountries, getVisitedCountries, postCountry} from '../services
 
 const MainContainer = () => {
     const [countries, setCountries] = useState([]);
+    const [searchCountry, setSearchCountry] = useState(null)
     const [selectedCountry, setSelectedCountry] = useState(null)
     const [bucketList, setBucketList] = useState([])
     const [visitedList, setVisitedList] = useState([])
+    const [error, setError] = useState(null)
+
+    useEffect(() => {
+        if (searchCountry) {
+            fetch(`https://restcountries.com/v3.1/name/${searchCountry}`)
+                .then(res => res.json())
+                .then(data => data ? setCountries(data)
+                : setError('No results found'))
+            .catch(err => console.error(`Loading error: ${err}`))
+        }
+    }, [searchCountry])
 
     useEffect(() => {
         fetch('https://restcountries.com/v3.1/all')
@@ -36,6 +48,12 @@ const MainContainer = () => {
             })
 
     }, []);
+
+    const onSubmitSearch = (searchCountry) => {
+        setSearchCountry(searchCountry)
+        setError(null)
+        // console.log(searchCountry)
+    }
 
     const onCountryClicked = (country) => {
         setSelectedCountry(country)
@@ -70,7 +88,7 @@ const MainContainer = () => {
     return (
         <>
             <NavBar />
-            <SearchBar/>
+            <SearchBar onSubmitSearch={onSubmitSearch}/>
             <CountryList countriesSlice={countries.slice(0, 20)} countries={countries} onCountryClicked={onCountryClicked} />
             <h3>Country Card:</h3>
             {selectedCountry ? <CountryDetail selectedCountry={selectedCountry} addToBucket={addToBucket} addToVisited={addToVisited} bucketList={bucketList} visitedList={visitedList} /> : null}
