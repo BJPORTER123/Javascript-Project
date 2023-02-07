@@ -1,5 +1,6 @@
 import NavBar from "./NavBar.js";
-import { postBucketCountry, postVisitedCountry, } from "../services/CountryService.js";
+import { postBucketCountry, postVisitedCountry, } from "../services/CountryService.js"
+import { useParams } from "react-router-dom";
 
 const CountryDetail = ({ selectedCountry, addToBucket, addToVisited, bucketList, visitedList }) => {
 
@@ -22,6 +23,11 @@ const CountryDetail = ({ selectedCountry, addToBucket, addToVisited, bucketList,
         }
     }
 
+    const bucketButton = () => {
+        if (visitedList.filter(country => country === selectedCountry).length === 1) {
+            return <button type="Submit" value='add-to-bucket' onClick={onBucketClick} >Add Bucket</button>
+        }
+    }
 
     return (
         <>
@@ -30,7 +36,7 @@ const CountryDetail = ({ selectedCountry, addToBucket, addToVisited, bucketList,
             {selectedCountry.capital} <br>
             </br>
             {selectedCountry.flag}
-            <button type="Submit" value='add-to-bucket' onClick={onBucketClick} >Add Bucket</button>
+            {bucketButton()}
             <button type="Submit" value='add-to-visited' onClick={onVisitedClick}>Add Visited</button>
         </>
     );
