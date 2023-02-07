@@ -19,11 +19,13 @@ const CountryDetail = ({ removeBucketCountry, selectedCountry, addToBucket, addT
     const onVisitedClick = () => {
         if(visitedList.filter(country => country.cca2 === selectedCountry.cca2).length === 0 && bucketList.filter(country => country.cca2 === selectedCountry.cca2).length === 0) {
             postVisitedCountry(selectedCountry)
-            .then(()=>{
-            addToVisited(selectedCountry)
-            deleteBucketCountry(countryId)
-                .then(() => {
-                removeBucketCountry(countryId)
+            .then((response)=>{
+                const copyOfSelectedCountry = {... selectedCountry}
+                copyOfSelectedCountry._id = response.insertedId
+                addToVisited(selectedCountry)
+                deleteBucketCountry(countryId)
+                    .then(() => {
+                    removeBucketCountry(countryId)
             })
         })
         }

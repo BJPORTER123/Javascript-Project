@@ -59,9 +59,13 @@ function CountryItem({ removeBucketCountry, country, onCountryClicked, bucketTru
 
     const handleMove = () => {
         const filteredCountry = bucketList.filter(country => country.cca2 === id)
+        // TODO: refactor to use find 
         console.log(filteredCountry[0])
             postVisitedCountry(filteredCountry[0])
-                .then(() => { addToVisited(filteredCountry[0]) })
+                .then((response) => { 
+                    filteredCountry[0]._id = response.insertedId
+                    addToVisited(filteredCountry[0]) 
+                })
             handleBucketDelete()
     }
 

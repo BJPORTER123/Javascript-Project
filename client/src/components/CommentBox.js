@@ -1,16 +1,46 @@
-import React from "react";
+import { useState } from "react";
 
-const CommentBox = () => {
+    const CommentBox = ({ onCommentSubmit }) => {
 
-    return ( 
-        <form>
-            <textarea name="comments">
+        const [comment, setComment] = useState("");
 
-            </textarea>
-            <button type="Submit" value="submit">Submit</button>
-            
-        </form>
-     );
-}
- 
-export default CommentBox ;
+        const handleCommentChange = (evt) => {
+            setComment(evt.target.value);
+        }
+
+        const handleCommentSubmit = (evt) => {
+            evt.preventDefault();
+            const commentToSubmit = comment.trim();
+            if (!commentToSubmit) {
+                return
+            }
+
+            onCommentSubmit({
+                comment: commentToSubmit
+            });
+
+            setComment("");
+        }
+
+        return (
+            <form onSubmit={handleCommentSubmit}>
+                <textarea
+                    type="comment"
+                    placeholder="Add comment..."
+                    value={comment}
+                    onChange={handleCommentChange}
+                />
+                <input
+                    type="submit"
+                    value="Post"
+                />
+            </form>
+        )
+
+    }
+
+export default CommentBox;
+
+//OnClick - submit comment
+//Comment to display on appropriate country
+//Post comment and comment key to database
