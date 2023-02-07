@@ -11,10 +11,24 @@ import { getBucketCountries, getVisitedCountries} from './services/CountryServic
 
 const App = () => {
 
+
     const [countries, setCountries] = useState([]);
+    const [searchCountry, setSearchCountry] = useState(null)
     const [selectedCountry, setSelectedCountry] = useState(null)
     const [bucketList, setBucketList] = useState([])
     const [visitedList, setVisitedList] = useState([])
+    const [error, setError] = useState(null)
+
+    useEffect(() => {
+        if (searchCountry) {
+            fetch(`https://restcountries.com/v3.1/name/${searchCountry}`)
+                .then(res => res.json())
+                // .then(data => setCountries(data))
+                .then(data => data ? setCountries(data)
+                : setError('No results found'))
+            .catch(err => console.error(`Loading error: ${err}`))
+        }
+    }, [searchCountry])
 
     useEffect(() => {
         fetch('https://restcountries.com/v3.1/all')
@@ -38,6 +52,11 @@ const App = () => {
             })
 
     }, []);
+
+    const onSubmitSearch = (searchCountry) => {
+        setSearchCountry(searchCountry)
+        setError(null)
+    }
 
     const onCountryClicked = (country) => {
         setSelectedCountry(country)
@@ -72,7 +91,7 @@ const App = () => {
         <Routes>
             <Route path="*" element={<NotFound/>}/>
             <Route exact path="/" element={<Title/>}/>
-            <Route exact path="/countries" element={<MainContainer countries={countries} onCountryClicked={onCountryClicked}/>}/>
+            <Route exact path="/countries" element={<MainContainer onSubmitSearch={onSubmitSearch} countries={countries} onCountryClicked={onCountryClicked}/>}/>
             <Route exact path="/bucket" element={ <BucketList bucketList={bucketList} onCountryClicked={onCountryClicked} removeBucketCountry={removeBucketCountry}/>}/>
             <Route exact path="/visited" element={ <VisitedList visitedList={visitedList} onCountryClicked={onCountryClicked} removeVisitedCountry={removeVisitedCountry}/>}/>
             <Route path="/countries/:id" element={<CountryDetail selectedCountry={selectedCountry} addToBucket={addToBucket} addToVisited={addToVisited} bucketList={bucketList} visitedList={visitedList}/>}/>
