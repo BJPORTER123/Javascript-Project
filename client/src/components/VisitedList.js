@@ -1,6 +1,5 @@
 import VisitedItem from "./VisitedItem";
 import NavBar from "./NavBar";
-import CommentBox from "./CommentBox";
 
 const VisitedList = ({ visitedList, removeVisitedCountry, onCountryClicked }) => {
 

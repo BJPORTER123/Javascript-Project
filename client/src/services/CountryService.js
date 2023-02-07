@@ -1,6 +1,3 @@
-import BucketList from "../components/BucketList";
-
-const baseURL = 'http://localhost:9000/api/countries/';
 const bucketURL = 'http://localhost:9000/api/countries/BucketList';
 const visitedURL = 'http://localhost:9000/api/countries/VisitedList';
 
