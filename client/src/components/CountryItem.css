@@ -6,17 +6,7 @@
     max-width: 250px;
     height: 115px;
     position: relative;
-    
 }
-/* border */
-.country-item{
-    outline: 1px solid black;
-    border-radius: 38px;
-    margin: 20px;
-    box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.19), 0px 10px 10px rgba(0, 0, 0, 0.23);
-   
-}
-
 /* align items center in item container */
 .country-item{
     display: flex;
@@ -27,5 +17,21 @@
     padding-bottom: 20px;
     padding-right: 20px;
 }
+
+/* border */
+.country-item{
+    outline: 1px solid black;
+    border-radius: 38px;
+    margin: 20px;
+    box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.19), 0px 10px 10px rgba(0, 0, 0, 0.23);
+   
+}
+
+.country-item:hover{
+    outline: 2.5px solid black;
+   
+}
+
+
 
 

@@ -13,7 +13,13 @@ const NavBar = () => {
                 </Link>
             </li>
             <li>
-                <Link className="nav-link" to="/home">Home</Link>
+                <Link className="nav-link" to="/countries">Home</Link>
+            </li>
+            <li>
+                <Link className="nav-link" to="/bucket">Bucketlist</Link>
+            </li>
+            <li>
+                <Link className="nav-link" to="/visited">Visited Countries</Link>
             </li>
             </ul>
         </nav>
