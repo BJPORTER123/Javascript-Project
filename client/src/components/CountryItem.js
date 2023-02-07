@@ -23,7 +23,7 @@ const TextContainer = styled.div`
 function CountryItem({removeBucketCountry, country, onCountryClicked, bucketDeleteButton, removeVisitedCountry, visitedDeleteButton}) {
 
 
-    const id = country.tld
+    const id = country.cca2
 
     const handleClicked = () => {
         onCountryClicked(country)
@@ -62,6 +62,7 @@ const handleVisitedDelete = () => {
                     <h4>{country.name.common}</h4>
                 </TextContainer>
                 <Flag>{country.flag}</Flag>
+                <br/>
                 {deleteButton()}
             
             </li>

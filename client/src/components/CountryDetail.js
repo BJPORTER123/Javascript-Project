@@ -5,7 +5,7 @@ const CountryDetail = ({ selectedCountry, addToBucket, addToVisited, bucketList,
 
 
     const onBucketClick = () => {
-        if(bucketList.filter(country => country.tld === selectedCountry.tld).length === 0) {
+        if(bucketList.filter(country => country.cca2 === selectedCountry.cca2).length === 0) {
             postBucketCountry(selectedCountry)
             .then(()=>{
             addToBucket(selectedCountry)
@@ -15,7 +15,7 @@ const CountryDetail = ({ selectedCountry, addToBucket, addToVisited, bucketList,
     }
 
     const onVisitedClick = () => {
-        if(visitedList.filter(country => country.tld === selectedCountry.tld).length === 0){
+        if(visitedList.filter(country => country.cca2 === selectedCountry.cca2).length === 0){
             postVisitedCountry(selectedCountry)
             .then(()=>{
             addToVisited(selectedCountry)
