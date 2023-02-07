@@ -1,6 +1,5 @@
-import { useState } from "react";
+import NavBar from "./NavBar.js";
 import { postBucketCountry, postVisitedCountry, } from "../services/CountryService.js";
-import VisitedList from "./VisitedList.js";
 
 const CountryDetail = ({ selectedCountry, addToBucket, addToVisited, bucketList, visitedList }) => {
 
@@ -29,6 +28,7 @@ const CountryDetail = ({ selectedCountry, addToBucket, addToVisited, bucketList,
 
     return (
         <>
+            <NavBar/>
             {selectedCountry.name.common} <br></br>
 
         

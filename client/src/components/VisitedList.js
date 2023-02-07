@@ -1,4 +1,5 @@
 import CountryItem from "./CountryItem";
+import NavBar from "./NavBar";
 
 const VisitedList = ({ visitedList, removeVisitedCountry, onCountryClicked }) => {
 
@@ -10,6 +11,7 @@ const VisitedList = ({ visitedList, removeVisitedCountry, onCountryClicked }) =>
 
     return (  
         <>
+        <NavBar/>
         {VisitedCountries}
         </>
     );

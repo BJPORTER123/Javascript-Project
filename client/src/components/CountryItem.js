@@ -2,7 +2,7 @@ import { deleteBucketCountry, deleteVisitedCountry } from '../services/CountrySe
 import React from 'react';
 import './CountryItem.css'
 import styled from 'styled-components';
-
+import {Link} from "react-router-dom"
 
 const Flag = styled.p`
     display: inline-block;
@@ -16,7 +16,7 @@ const TextContainer = styled.div`
     width: 80%;
     padding-right: 70px;
     color: rgb(1, 8, 8);
-    background-color: #fcfeff8f;
+    background-color: azure;
     font-size: 0.85rem;
 `;
 
@@ -55,14 +55,17 @@ const handleVisitedDelete = () => {
 }
 
     return (
-        <li className="country-item" onClick={handleClicked}>
-            <TextContainer>
-                <h4>{country.name.common}</h4>
-            </TextContainer>
-            <Flag>{country.flag}</Flag>
-            {deleteButton()}
+        <Link to="/countries/:id">
+            <li className="country-item" onClick={handleClicked}>
             
-        </li>
+                <TextContainer>
+                    <h4>{country.name.common}</h4>
+                </TextContainer>
+                <Flag>{country.flag}</Flag>
+                {deleteButton()}
+            
+            </li>
+        </Link>
     );
 }
 

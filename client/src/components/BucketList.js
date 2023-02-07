@@ -1,4 +1,5 @@
 import CountryItem from "./CountryItem";
+import NavBar from "./NavBar";
 
 const BucketList = ({ bucketList, onCountryClicked, removeBucketCountry}) => {
 
@@ -13,6 +14,7 @@ const BucketList = ({ bucketList, onCountryClicked, removeBucketCountry}) => {
 
     return (  
         <>
+        <NavBar/>
         {BucketCountries}
         </>
     );
