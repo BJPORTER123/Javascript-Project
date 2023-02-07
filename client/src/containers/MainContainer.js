@@ -20,6 +20,7 @@ const MainContainer = () => {
         if (searchCountry) {
             fetch(`https://restcountries.com/v3.1/name/${searchCountry}`)
                 .then(res => res.json())
+                // .then(data => setCountries(data))
                 .then(data => data ? setCountries(data)
                 : setError('No results found'))
             .catch(err => console.error(`Loading error: ${err}`))
@@ -52,7 +53,6 @@ const MainContainer = () => {
     const onSubmitSearch = (searchCountry) => {
         setSearchCountry(searchCountry)
         setError(null)
-        // console.log(searchCountry)
     }
 
     const onCountryClicked = (country) => {
