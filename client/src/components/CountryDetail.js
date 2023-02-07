@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 
 const CountryDetail = ({ selectedCountry, addToBucket, addToVisited, bucketList, visitedList }) => {
 
+    const {countryId} = useParams()
 
     const onBucketClick = () => {
         if(bucketList.filter(country => country.cca2 === selectedCountry.cca2).length === 0) {
@@ -23,11 +24,6 @@ const CountryDetail = ({ selectedCountry, addToBucket, addToVisited, bucketList,
         }
     }
 
-    const bucketButton = () => {
-        if (visitedList.filter(country => country === selectedCountry).length === 1) {
-            return <button type="Submit" value='add-to-bucket' onClick={onBucketClick} >Add Bucket</button>
-        }
-    }
 
     return (
         <>
@@ -36,7 +32,10 @@ const CountryDetail = ({ selectedCountry, addToBucket, addToVisited, bucketList,
             {selectedCountry.capital} <br>
             </br>
             {selectedCountry.flag}
-            {bucketButton()}
+            {visitedList.filter(country => country.cca2 === countryId).length === 0
+                ? <button type="Submit" value='add-to-bucket' onClick={onBucketClick} >Add Bucket</button>
+                : "Already Visited "
+            }
             <button type="Submit" value='add-to-visited' onClick={onVisitedClick}>Add Visited</button>
         </>
     );

@@ -99,7 +99,7 @@ const App = () => {
             <VisitedList visitedList={visitedList} onCountryClicked={onCountryClicked} removeVisitedCountry={removeVisitedCountry}/>
             }/>
 
-            <Route path="/countries/:id" element={
+            <Route path="/countries/:countryId" element={
             <CountryDetail selectedCountry={selectedCountry} addToBucket={addToBucket} addToVisited={addToVisited} bucketList={bucketList} visitedList={visitedList}/>
             }/>
         </Routes>
