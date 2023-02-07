@@ -11,7 +11,6 @@ const CountryDetail = ({ selectedCountry, addToBucket, addToVisited, bucketList,
             addToBucket(selectedCountry)
         })
         }
-
     }
 
     const onVisitedClick = () => {
@@ -21,8 +20,6 @@ const CountryDetail = ({ selectedCountry, addToBucket, addToVisited, bucketList,
             addToVisited(selectedCountry)
         })
         }
-        
-
     }
 
 
@@ -30,16 +27,11 @@ const CountryDetail = ({ selectedCountry, addToBucket, addToVisited, bucketList,
         <>
             <NavBar/>
             {selectedCountry.name.common} <br></br>
-
-        
             {selectedCountry.capital} <br>
-
             </br>
             {selectedCountry.flag}
             <button type="Submit" value='add-to-bucket' onClick={onBucketClick} >Bucket List</button>
             <button type="Submit" value='add-to-visited' onClick={onVisitedClick}>Visited List</button>
-            
-
         </>
     );
 }

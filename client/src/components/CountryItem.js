@@ -30,7 +30,6 @@ function CountryItem({removeBucketCountry, country, onCountryClicked, bucketDele
     }
         
 
-    
     const deleteButton = () => {
         if(bucketDeleteButton){ 
             return <button onClick={handleBucketDelete}>Delete</button>
@@ -55,18 +54,20 @@ const handleVisitedDelete = () => {
 }
 
     return (
-        <Link to="/countries/:id">
+        <div>
+        
             <li className="country-item" onClick={handleClicked}>
-            
+            <Link to="/countries/:id">
                 <TextContainer>
                     <h4>{country.name.common}</h4>
                 </TextContainer>
                 <Flag>{country.flag}</Flag>
-                <br/>
+                </Link>
                 {deleteButton()}
-            
             </li>
-        </Link>
+        
+         
+         </div>
     );
 }
 
