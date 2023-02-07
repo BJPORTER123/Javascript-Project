@@ -9,8 +9,6 @@ const BucketList = ({ bucketList, onCountryClicked, removeBucketCountry}) => {
         return <CountryItem country={country} key={country.cca2} bucketDeleteButton={true} onCountryClicked={onCountryClicked} removeBucketCountry={removeBucketCountry}/>
     })
 
-    
-
 
     return (  
         <>
