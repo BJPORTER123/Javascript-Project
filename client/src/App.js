@@ -78,12 +78,12 @@ const App = () => {
 
     
     const removeBucketCountry = (id) => {
-        const countriesToKeep = bucketList.filter(country => country.tld !== id)
+        const countriesToKeep = bucketList.filter(country => country.cca2 !== id)
         setBucketList(countriesToKeep)
       }
 
       const removeVisitedCountry = (id) => {
-        const countriesToKeep = visitedList.filter(country => country.tld !== id)
+        const countriesToKeep = visitedList.filter(country => country.cca2 !== id)
         setVisitedList(countriesToKeep)
       }
     return (

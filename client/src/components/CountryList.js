@@ -5,7 +5,7 @@ import './CountryList.css'
 const CountryList = ({countriesSlice, onCountryClicked}) => {
 
     const CountryItems = countriesSlice.map((country)=>{
-        return <CountryItem country={country} onCountryClicked={onCountryClicked} key={country.tld}/>
+        return <CountryItem country={country} onCountryClicked={onCountryClicked} key={country.cca2}/>
     })
 
         

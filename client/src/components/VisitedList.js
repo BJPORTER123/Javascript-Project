@@ -5,7 +5,7 @@ const VisitedList = ({ visitedList, removeVisitedCountry, onCountryClicked }) =>
 
     const VisitedCountries = visitedList.map((country)=>{
 
-        return <CountryItem country={country} key={country.tld} removeVisitedCountry={removeVisitedCountry} visitedDeleteButton={true} onCountryClicked={onCountryClicked}/>
+        return <CountryItem country={country} key={country.cca2} removeVisitedCountry={removeVisitedCountry} visitedDeleteButton={true} onCountryClicked={onCountryClicked}/>
     })
 
 
