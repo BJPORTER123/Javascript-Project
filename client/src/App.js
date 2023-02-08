@@ -50,7 +50,16 @@ const App = () => {
             })
     }, [])
 
+    const refreshCountries = () => {
+        fetch('https://restcountries.com/v3.1/all')
+            .then(res => res.json())
+            .then(countries => {
+                const shuffledCountries = countries.sort(() => Math.random() - 0.5)
+                setCountries(shuffledCountries)
+            })
+    }
 
+    // ALPHABETICALLY SORTED:
     // useEffect(() => {
     //     fetch('https://restcountries.com/v3.1/all')
     //         .then(res => res.json())
@@ -68,7 +77,7 @@ const App = () => {
     //         })
     // }, [])
 
-    
+
 
 
     useEffect(() => {
@@ -170,7 +179,7 @@ const App = () => {
                 <Route exact path="/" element={<Title />} />
 
                 <Route exact path="/countries" element={
-                    <MainContainer onSubmitSearch={onSubmitSearch} countries={countries} onCountryClicked={onCountryClicked} error={error} searchedCountries={searchedCountries} visitedList={visitedList} onBucketClick={onBucketClick} onVisitedClick={onVisitedClick} countryAddSuccess={countryAddSuccess} countryAddError={countryAddError} />
+                    <MainContainer onSubmitSearch={onSubmitSearch} countries={countries} onCountryClicked={onCountryClicked} error={error} searchedCountries={searchedCountries} visitedList={visitedList} onBucketClick={onBucketClick} onVisitedClick={onVisitedClick} countryAddSuccess={countryAddSuccess} countryAddError={countryAddError} refreshCountries={refreshCountries}/>
                 } />
 
                 <Route exact path="/bucket" element={
