@@ -80,6 +80,17 @@ const App = () => {
         setVisitedList(copyOfVisited)
     }
 
+    const updateVisited = (updatedCountry) => {
+        const updatedList = visitedList.map((country)=>{
+            if(country._id === updatedCountry._id){
+                return{...country, comment: updatedCountry.comment}
+            }
+            return country
+        })
+        setVisitedList(updatedList)
+            
+
+    }
     const removeBucketCountry = (id) => {
         const countriesToKeep = bucketList.filter(country => country.cca2 !== id)
         setBucketList(countriesToKeep)
@@ -89,6 +100,8 @@ const App = () => {
         const countriesToKeep = visitedList.filter(country => country.cca2 !== id)
         setVisitedList(countriesToKeep)
     }
+
+    
 
     return (
         <>
@@ -105,7 +118,7 @@ const App = () => {
                 } />
 
                 <Route exact path="/visited" element={
-                    <VisitedList visitedList={visitedList} onCountryClicked={onCountryClicked} removeVisitedCountry={removeVisitedCountry} />
+                    <VisitedList updateVisited={updateVisited} visitedList={visitedList} onCountryClicked={onCountryClicked} removeVisitedCountry={removeVisitedCountry} />
                 } />
 
                 <Route path="/countries/:countryId" element={

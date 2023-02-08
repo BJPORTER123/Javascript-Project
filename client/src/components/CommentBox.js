@@ -3,7 +3,7 @@ import { putVisitedCountries } from '../services/CountryService';
 
 
 
-    const CommentBox = ({ country }) => {
+    const CommentBox = ({ country, updateVisited }) => {
 
         const [comment, setComment] = useState("");
 
@@ -17,8 +17,9 @@ import { putVisitedCountries } from '../services/CountryService';
             const commentToSubmit = comment.trim();
            
             copyOfCountry.comment = commentToSubmit
-            putVisitedCountries(copyOfCountry);
-            console.log(copyOfCountry)
+            putVisitedCountries(copyOfCountry)
+            updateVisited(copyOfCountry)
+            // think about adding a catch here
             setComment("");
         };
 

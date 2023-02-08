@@ -22,7 +22,6 @@ const createRouter = function (collection) {
         collection
             .insertOne(newListItem)
             .then((result) => {
-                // res.json(result.insertId)
                 res.json(result)
             })
             .catch((err) => {
