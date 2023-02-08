@@ -6,19 +6,19 @@ const NavBar = () => {
     return (  
         <>
         <nav className="nav-bar">
-            <ul className="nav-li">
-            <li>
+            <ul className="nav-ul">
+            <li className="nav-li">
                 <Link className="nav-link" to="/">
                     <img id= "globe-img" src={globe} alt="Logo" width="55" height="55" />
                 </Link>
             </li>
-            <li>
+            <li className="nav-li">
                 <Link className="nav-link" to="/countries">Home</Link>
             </li>
-            <li>
+            <li className="nav-li">
                 <Link className="nav-link" to="/bucket">Bucketlist</Link>
             </li>
-            <li>
+            <li className="nav-li">
                 <Link className="nav-link" to="/visited">Visited Countries</Link>
             </li>
             </ul>

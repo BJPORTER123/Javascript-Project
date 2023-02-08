@@ -30,23 +30,17 @@ const CountryDetail = ({ removeBucketCountry, selectedCountry, addToBucket, addT
         }
     }
 
-    // const handleMove = () => {
-    //     const filteredCountry = bucketList.filter(country => country.cca2 === id)
-    //     console.log(filteredCountry[0])
-    //         postVisitedCountry(filteredCountry[0])
-    //             .then(() => { addToVisited(filteredCountry[0]) })
-    //         handleBucketDelete()
-    // }
-    //On CountryDetail page, the Add Visited button should delete the country from the BucketList if it's already there
-    //filter through BucketList with an id, if the
-
     return (
         <>
             <NavBar/>
-            {selectedCountry.name.common} <br></br>
-            {selectedCountry.capital} <br>
-            </br>
-            {selectedCountry.flag}
+            <div>
+            <img src={selectedCountry.flags.png} alt={selectedCountry.flags.alt}/><br>
+                </br>
+                {selectedCountry.name.common} <br>
+                </br>
+                {selectedCountry.capital} 
+                
+            </div>
             {visitedList.filter(country => country.cca2 === countryId).length === 0
                 ? <button type="Submit" value='add-to-bucket' onClick={onBucketClick} >Add Bucket</button>
                 : "Already Visited "
