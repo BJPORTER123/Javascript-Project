@@ -3,12 +3,12 @@ import NavBar from '../components/NavBar';
 import SearchBar from '../components/SearchBar';
 
 
-const MainContainer = ({ countries, onCountryClicked, onSubmitSearch, error, searchedCountries, visitedList, onBucketClick, onVisitedClick, countryAddSuccess, countryAddError, refreshCountries }) => {
+const MainContainer = ({ countries, onCountryClicked, onSubmitSearch, error, searchedCountries, visitedList, onBucketClick, onVisitedClick, countryAddSuccess, countryAddError, refreshCountries, resetSearchedItem}) => {
 
     return (
         <>
-            <NavBar />
-            <SearchBar onSubmitSearch={onSubmitSearch} />
+            <NavBar resetSearchedItem={resetSearchedItem}/>
+            <SearchBar onSubmitSearch={onSubmitSearch} resetSearchedItem={resetSearchedItem} />
             <h4>{countryAddSuccess}{countryAddError}</h4>
             <div>
                 {error ?

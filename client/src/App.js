@@ -83,6 +83,9 @@ const App = () => {
             })
     }, []);
 
+    const resetSearchedItem = () => {
+        setSearchCountry(null)
+      }
 
     const onSubmitSearch = (searchCountry) => {
         setSearchCountry(searchCountry)
@@ -168,7 +171,7 @@ const App = () => {
                 <Route exact path="/" element={<Title />} />
 
                 <Route exact path="/countries" element={
-                    <MainContainer countries={countries} onCountryClicked={onCountryClicked} onSubmitSearch={onSubmitSearch} error={error} searchedCountries={searchedCountries} visitedList={visitedList} onBucketClick={onBucketClick} onVisitedClick={onVisitedClick} countryAddSuccess={countryAddSuccess} countryAddError={countryAddError} refreshCountries={refreshCountries} />
+                    <MainContainer countries={countries} onCountryClicked={onCountryClicked} onSubmitSearch={onSubmitSearch} error={error} searchedCountries={searchedCountries} visitedList={visitedList} onBucketClick={onBucketClick} onVisitedClick={onVisitedClick} countryAddSuccess={countryAddSuccess} countryAddError={countryAddError} refreshCountries={refreshCountries} resetSearchedItem={resetSearchedItem}/>
                 } />
 
                 <Route exact path="/bucket" element={
