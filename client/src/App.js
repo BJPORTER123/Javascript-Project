@@ -41,129 +41,148 @@ const App = () => {
     }, [searchCountry]);
 
 
-    useEffect(() => {
-        fetch('https://restcountries.com/v3.1/all')
-            .then(res => res.json())
-            .then(data => setCountries(data))
-    }, []);
+    // useEffect(() => {
+    //     fetch('https://restcountries.com/v3.1/all')
+    //         .then(res => res.json())
+    //         .then(data => setCountries(data))
+    // }, []);
 
-    useEffect(() => {
-        getBucketCountries()
-            .then(bucketCountries => {
-                setBucketList(bucketCountries)
+
+        useEffect(() => {
+            fetch('https://restcountries.com/v3.1/all')
+                .then(res => res.json())
+                .then(countries => {
+                    const sortedCountries = countries.sort((a, b) => {
+                        if (a.name.common < b.name.common) {
+                            return -1
+                        } else if (a.name.common > b.name.common) {
+                            return 1
+                        }
+                        return 0
+                    })
+                    console.log(sortedCountries)
+                    setCountries(sortedCountries)
+                })
+        }, [])
+
+
+        useEffect(() => {
+            getBucketCountries()
+                .then(bucketCountries => {
+                    setBucketList(bucketCountries)
+                })
+        }, []);
+
+        useEffect(() => {
+            getVisitedCountries()
+                .then(visitedCountries => {
+                    setVisitedList(visitedCountries)
+                })
+        }, []);
+
+        const onSubmitSearch = (searchCountry) => {
+            setSearchCountry(searchCountry)
+            setError(null)
+        }
+
+        const onCountryClicked = (country) => {
+            setSelectedCountry(country)
+        }
+
+        const addToBucket = (selectedCountry) => {
+            const copyOfBucket = [...bucketList]
+            copyOfBucket.push(selectedCountry)
+            setBucketList(copyOfBucket)
+        }
+
+        const addToVisited = (selectedCountry) => {
+            const copyOfVisited = [...visitedList]
+            copyOfVisited.push(selectedCountry)
+            setVisitedList(copyOfVisited)
+        }
+
+        const updateVisited = (updatedCountry) => {
+            const updatedList = visitedList.map((country) => {
+                if (country._id === updatedCountry._id) {
+                    return { ...country, comment: updatedCountry.comment }
+                }
+                return country
             })
-    }, []);
+            setVisitedList(updatedList)
 
-    useEffect(() => {
-        getVisitedCountries()
-            .then(visitedCountries => {
-                setVisitedList(visitedCountries)
-            })
-    }, []);
 
-    const onSubmitSearch = (searchCountry) => {
-        setSearchCountry(searchCountry)
-        setError(null)
-    }
+        }
+        const removeBucketCountry = (id) => {
+            const countriesToKeep = bucketList.filter(country => country.cca2 !== id)
+            setBucketList(countriesToKeep)
+        }
 
-    const onCountryClicked = (country) => {
-        setSelectedCountry(country)
-    }
+        const removeVisitedCountry = (id) => {
+            const countriesToKeep = visitedList.filter(country => country.cca2 !== id)
+            setVisitedList(countriesToKeep)
+        }
 
-    const addToBucket = (selectedCountry) => {
-        const copyOfBucket = [...bucketList]
-        copyOfBucket.push(selectedCountry)
-        setBucketList(copyOfBucket)
-    }
-
-    const addToVisited = (selectedCountry) => {
-        const copyOfVisited = [...visitedList]
-        copyOfVisited.push(selectedCountry)
-        setVisitedList(copyOfVisited)
-    }
-
-    const updateVisited = (updatedCountry) => {
-        const updatedList = visitedList.map((country) => {
-            if (country._id === updatedCountry._id) {
-                return { ...country, comment: updatedCountry.comment }
+        const onBucketClick = (clickedCountry) => {
+            if (visitedList.filter(country => country.cca2 === clickedCountry.cca2).length === 0 && bucketList.filter(country => country.cca2 === clickedCountry.cca2).length === 0) {
+                postBucketCountry(clickedCountry)
+                    .then(() => {
+                        addToBucket(clickedCountry)
+                        setCountryAddSuccess('Added to list!')
+                        setCountryAddError(null)
+                    })
             }
-            return country
-        })
-        setVisitedList(updatedList)
-
-
-    }
-    const removeBucketCountry = (id) => {
-        const countriesToKeep = bucketList.filter(country => country.cca2 !== id)
-        setBucketList(countriesToKeep)
-    }
-
-    const removeVisitedCountry = (id) => {
-        const countriesToKeep = visitedList.filter(country => country.cca2 !== id)
-        setVisitedList(countriesToKeep)
-    }
-
-    const onBucketClick = (clickedCountry) => {
-        if (visitedList.filter(country => country.cca2 === clickedCountry.cca2).length === 0 && bucketList.filter(country => country.cca2 === clickedCountry.cca2).length === 0) {
-            postBucketCountry(clickedCountry)
-                .then(() => {
-                    addToBucket(clickedCountry)
-                    setCountryAddSuccess('Added to list!')
-                    setCountryAddError(null)
-                })
+            else if (visitedList.filter(country => country.cca2 === clickedCountry.cca2).length > 0 || bucketList.filter(country => country.cca2 === clickedCountry.cca2).length > 0) {
+                setCountryAddSuccess(null)
+                setCountryAddError(`Can't add, ${clickedCountry.name.common} is already on a list`)
+            }
         }
-        else if (visitedList.filter(country => country.cca2 === clickedCountry.cca2).length > 0 ||bucketList.filter(country => country.cca2 === clickedCountry.cca2).length > 0) {
-            setCountryAddSuccess(null)
-            setCountryAddError(`Can't add, ${clickedCountry.name.common} is already on a list`)
+
+        const onVisitedClick = (clickedCountry) => {
+            if (visitedList.filter(country => country.cca2 === clickedCountry.cca2).length === 0) {
+                postVisitedCountry(clickedCountry)
+                    .then((response) => {
+                        const copyOfClickedCountry = { ...clickedCountry }
+                        copyOfClickedCountry._id = response.insertedId
+                        addToVisited(copyOfClickedCountry)
+                        deleteBucketCountry(clickedCountry.cca2)
+                            .then(() => {
+                                removeBucketCountry(clickedCountry.cca2)
+                                setCountryAddSuccess('Successfully posted')
+                                setCountryAddError(null)
+                            })
+                    })
+            }
+            else if (visitedList.filter(country => country.cca2 === clickedCountry.cca2).length > 0 || bucketList.filter(country => country.cca2 === clickedCountry.cca2).length > 0) {
+                setCountryAddSuccess(null)
+                setCountryAddError(`Can't add, ${clickedCountry.name.common} is already on a list`)
+            }
         }
+
+        return (
+            <>
+                <Routes>
+                    <Route path="*" element={<NotFound />} />
+                    <Route exact path="/" element={<Title />} />
+
+                    <Route exact path="/countries" element={
+                        <MainContainer onSubmitSearch={onSubmitSearch} countries={countries} onCountryClicked={onCountryClicked} error={error} searchedCountries={searchedCountries} visitedList={visitedList} onBucketClick={onBucketClick} onVisitedClick={onVisitedClick} countryAddSuccess={countryAddSuccess} countryAddError={countryAddError} />
+                    } />
+
+                    <Route exact path="/bucket" element={
+                        <BucketList addToVisited={addToVisited} bucketList={bucketList} onCountryClicked={onCountryClicked} removeBucketCountry={removeBucketCountry} />
+                    } />
+
+                    <Route exact path="/visited" element={
+                        <VisitedList updateVisited={updateVisited} visitedList={visitedList} onCountryClicked={onCountryClicked} removeVisitedCountry={removeVisitedCountry} />
+                    } />
+
+                    <Route path="/countries/:countryId" element={
+                        <CountryDetail removeBucketCountry={removeBucketCountry} selectedCountry={selectedCountry} addToBucket={addToBucket} addToVisited={addToVisited} bucketList={bucketList} visitedList={visitedList} />
+                    } />
+                </Routes>
+            </>
+        );
     }
-
-    const onVisitedClick = (clickedCountry) => {
-        if (visitedList.filter(country => country.cca2 === clickedCountry.cca2).length === 0) {
-            postVisitedCountry(clickedCountry)
-                .then((response) => {
-                    const copyOfClickedCountry = { ...clickedCountry }
-                    copyOfClickedCountry._id = response.insertedId
-                    addToVisited(copyOfClickedCountry)
-                    deleteBucketCountry(clickedCountry.cca2)
-                        .then(() => {
-                            removeBucketCountry(clickedCountry.cca2)
-                            setCountryAddSuccess('Successfully posted')
-                            setCountryAddError(null)
-                        })
-                })
-        }
-        else if (visitedList.filter(country => country.cca2 === clickedCountry.cca2).length >0 ||bucketList.filter(country => country.cca2 === clickedCountry.cca2).length > 0) {
-            setCountryAddSuccess(null)
-            setCountryAddError(`Can't add, ${clickedCountry.name.common} is already on a list`)
-        }
-    }
-
-    return (
-        <>
-            <Routes>
-                <Route path="*" element={<NotFound />} />
-                <Route exact path="/" element={<Title />} />
-
-                <Route exact path="/countries" element={
-                    <MainContainer onSubmitSearch={onSubmitSearch} countries={countries} onCountryClicked={onCountryClicked} error={error} searchedCountries={searchedCountries} visitedList={visitedList} onBucketClick={onBucketClick} onVisitedClick={onVisitedClick} countryAddSuccess={countryAddSuccess} countryAddError={countryAddError} />
-                } />
-
-                <Route exact path="/bucket" element={
-                    <BucketList addToVisited={addToVisited} bucketList={bucketList} onCountryClicked={onCountryClicked} removeBucketCountry={removeBucketCountry} />
-                } />
-
-                <Route exact path="/visited" element={
-                    <VisitedList updateVisited={updateVisited} visitedList={visitedList} onCountryClicked={onCountryClicked} removeVisitedCountry={removeVisitedCountry} />
-                } />
-
-                <Route path="/countries/:countryId" element={
-                    <CountryDetail removeBucketCountry={removeBucketCountry} selectedCountry={selectedCountry} addToBucket={addToBucket} addToVisited={addToVisited} bucketList={bucketList} visitedList={visitedList} />
-                } />
-            </Routes>
-        </>
-    );
-}
 
 export default App;
 
