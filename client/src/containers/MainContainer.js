@@ -3,7 +3,7 @@ import NavBar from '../components/NavBar';
 import SearchBar from '../components/SearchBar';
 
 
-const MainContainer = ({ countries, onCountryClicked, onSubmitSearch, addToVisited, error, searchedCountries }) => {
+const MainContainer = ({ countries, onCountryClicked, onSubmitSearch, addToVisited, error, searchedCountries, visitedList, onBucketClick, onVisitedClick}) => {
 
     return (
         <>
@@ -16,13 +16,13 @@ const MainContainer = ({ countries, onCountryClicked, onSubmitSearch, addToVisit
                     </>
                     :
                     <>
-                        <CountryList countriesSlice={searchedCountries} countries={countries} onCountryClicked={onCountryClicked} addToVisited={addToVisited} />
+                        <CountryList countriesSlice={searchedCountries} countries={countries} onCountryClicked={onCountryClicked} addToVisited={addToVisited} visitedList={visitedList} onBucketClick={onBucketClick} onVisitedClick={onVisitedClick}/>
                     </>
                 }
             </div>
             <div>
                 <h3 className="list-title">Countries Suggestions</h3>
-                <CountryList countriesSlice={countries.slice(0, 20)} countries={countries} onCountryClicked={onCountryClicked} addToVisited={addToVisited} />
+                <CountryList countriesSlice={countries.slice(0, 20)} countries={countries} onCountryClicked={onCountryClicked} addToVisited={addToVisited} visitedList={visitedList} onBucketClick={onBucketClick} onVisitedClick={onVisitedClick}/>
             </div>
         </>
 
