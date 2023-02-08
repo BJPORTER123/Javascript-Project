@@ -2,9 +2,9 @@ import CountryItem from "./CountryItem";
 import './CountryList.css'
 
 
-const CountryList = ({countriesSlice, onCountryClicked}) => {
+const SearchedCountries = ({searchedCountries, onCountryClicked}) => {
 
-    const CountryItems = countriesSlice.map((country)=>{
+    const CountryItems = searchedCountries.map((country)=>{
         return <CountryItem country={country} onCountryClicked={onCountryClicked} key={country.cca2}/>
     })
 
@@ -12,7 +12,7 @@ const CountryList = ({countriesSlice, onCountryClicked}) => {
 
     return (  
         <>
-        <h3 className="list-title">Countries Suggestions</h3>
+        <h3 className="list-title">Search Results</h3>
         <div className="container">
             {CountryItems}
         </div>
@@ -20,6 +20,6 @@ const CountryList = ({countriesSlice, onCountryClicked}) => {
         </>
     );
 }
- 
-export default CountryList;
+
+export default SearchedCountries;
 
