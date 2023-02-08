@@ -108,13 +108,13 @@ const App = () => {
             postBucketCountry(clickedCountry)
                 .then(() => {
                     addToBucket(clickedCountry)
-                    setCountryAddSuccess('Successfully posted')
+                    setCountryAddSuccess('Added to list!')
                     setCountryAddError(null)
                 })
-                .catch(() => {
-                    setCountryAddSuccess(null)
-                    setCountryAddError('This country is already on the list')
-                })
+        }
+        else if (visitedList.filter(country => country.cca2 === clickedCountry.cca2).length > 0 ||bucketList.filter(country => country.cca2 === clickedCountry.cca2).length > 0) {
+            setCountryAddSuccess(null)
+            setCountryAddError(`Can't add, ${clickedCountry.name.common} is already on a list`)
         }
     }
 
@@ -133,13 +133,11 @@ const App = () => {
                         })
                 })
         }
-        else if (visitedList.filter(country => country.cca2 === clickedCountry.cca2).length >0) {
+        else if (visitedList.filter(country => country.cca2 === clickedCountry.cca2).length >0 ||bucketList.filter(country => country.cca2 === clickedCountry.cca2).length > 0) {
             setCountryAddSuccess(null)
-            setCountryAddError('This country is already on the list')
+            setCountryAddError(`Can't add, ${clickedCountry.name.common} is already on a list`)
         }
     }
-
-
 
     return (
         <>
