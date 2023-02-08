@@ -6,7 +6,7 @@ import MainContainer from './containers/MainContainer';
 import BucketList from './components/BucketList';
 import CountryDetail from './components/CountryDetail';
 import VisitedList from './components/VisitedList'
-import { getBucketCountries, getVisitedCountries, postBucketCountry, postVisitedCountry } from './services/CountryService';
+import { getBucketCountries, getVisitedCountries, postBucketCountry, postVisitedCountry, deleteBucketCountry } from './services/CountryService';
 
 
 const App = () => {
@@ -19,6 +19,8 @@ const App = () => {
     const [visitedList, setVisitedList] = useState([])
     const [searchedCountries, setSearchedCountries] = useState([])
     const [error, setError] = useState(null)
+    const [countryAddSuccess, setCountryAddSuccess] = useState(null)
+    const [countryAddError, setCountryAddError] = useState(null)
 
 
     useEffect(() => {
@@ -81,14 +83,14 @@ const App = () => {
     }
 
     const updateVisited = (updatedCountry) => {
-        const updatedList = visitedList.map((country)=>{
-            if(country._id === updatedCountry._id){
-                return{...country, comment: updatedCountry.comment}
+        const updatedList = visitedList.map((country) => {
+            if (country._id === updatedCountry._id) {
+                return { ...country, comment: updatedCountry.comment }
             }
             return country
         })
         setVisitedList(updatedList)
-            
+
 
     }
     const removeBucketCountry = (id) => {
@@ -106,24 +108,38 @@ const App = () => {
             postBucketCountry(clickedCountry)
                 .then(() => {
                     addToBucket(clickedCountry)
+                    setCountryAddSuccess('Successfully posted')
+                    setCountryAddError(null)
+                })
+                .catch(() => {
+                    setCountryAddSuccess(null)
+                    setCountryAddError('This country is already on the list')
                 })
         }
     }
 
     const onVisitedClick = (clickedCountry) => {
-        if (visitedList.filter(country => country.cca2 === clickedCountry.cca2).length === 0 && bucketList.filter(country => country.cca2 === clickedCountry.cca2).length === 0) {
+        if (visitedList.filter(country => country.cca2 === clickedCountry.cca2).length === 0) {
             postVisitedCountry(clickedCountry)
                 .then((response) => {
                     const copyOfClickedCountry = { ...clickedCountry }
                     copyOfClickedCountry._id = response.insertedId
                     addToVisited(copyOfClickedCountry)
-                    // deleteBucketCountry(countryId)
-                    //     .then(() => {
-                    //         removeBucketCountry(countryId)
-                    //     })
+                    deleteBucketCountry(clickedCountry.cca2)
+                        .then(() => {
+                            removeBucketCountry(clickedCountry.cca2)
+                            setCountryAddSuccess('Successfully posted')
+                            setCountryAddError(null)
+                        })
                 })
         }
+        else if (visitedList.filter(country => country.cca2 === clickedCountry.cca2).length >0) {
+            setCountryAddSuccess(null)
+            setCountryAddError('This country is already on the list')
+        }
     }
+
+
 
     return (
         <>
@@ -132,7 +148,7 @@ const App = () => {
                 <Route exact path="/" element={<Title />} />
 
                 <Route exact path="/countries" element={
-                    <MainContainer onSubmitSearch={onSubmitSearch} countries={countries} onCountryClicked={onCountryClicked} error={error} searchedCountries={searchedCountries} visitedList={visitedList} onBucketClick={onBucketClick} onVisitedClick={onVisitedClick}/>
+                    <MainContainer onSubmitSearch={onSubmitSearch} countries={countries} onCountryClicked={onCountryClicked} error={error} searchedCountries={searchedCountries} visitedList={visitedList} onBucketClick={onBucketClick} onVisitedClick={onVisitedClick} countryAddSuccess={countryAddSuccess} countryAddError={countryAddError} />
                 } />
 
                 <Route exact path="/bucket" element={
