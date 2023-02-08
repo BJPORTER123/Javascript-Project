@@ -14,7 +14,9 @@ const BucketList = ({ bucketList, onCountryClicked, removeBucketCountry, addToVi
         <>
         <NavBar/>
         <h2>Bucket List</h2>
+        <div className="container">
         {BucketCountries}
+        </div>
         </>
     );
 }
