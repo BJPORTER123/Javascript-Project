@@ -6,7 +6,7 @@ import MainContainer from './containers/MainContainer';
 import BucketList from './components/BucketList';
 import CountryDetail from './components/CountryDetail';
 import VisitedList from './components/VisitedList'
-import { getBucketCountries, getVisitedCountries } from './services/CountryService';
+import { getBucketCountries, getVisitedCountries, postBucketCountry, postVisitedCountry } from './services/CountryService';
 
 
 const App = () => {
@@ -101,7 +101,29 @@ const App = () => {
         setVisitedList(countriesToKeep)
     }
 
-    
+    const onBucketClick = (clickedCountry) => {
+        if (visitedList.filter(country => country.cca2 === clickedCountry.cca2).length === 0 && bucketList.filter(country => country.cca2 === clickedCountry.cca2).length === 0) {
+            postBucketCountry(clickedCountry)
+                .then(() => {
+                    addToBucket(clickedCountry)
+                })
+        }
+    }
+
+    const onVisitedClick = (clickedCountry) => {
+        if (visitedList.filter(country => country.cca2 === clickedCountry.cca2).length === 0 && bucketList.filter(country => country.cca2 === clickedCountry.cca2).length === 0) {
+            postVisitedCountry(clickedCountry)
+                .then((response) => {
+                    const copyOfClickedCountry = { ...clickedCountry }
+                    copyOfClickedCountry._id = response.insertedId
+                    addToVisited(copyOfClickedCountry)
+                    // deleteBucketCountry(countryId)
+                    //     .then(() => {
+                    //         removeBucketCountry(countryId)
+                    //     })
+                })
+        }
+    }
 
     return (
         <>
@@ -110,7 +132,7 @@ const App = () => {
                 <Route exact path="/" element={<Title />} />
 
                 <Route exact path="/countries" element={
-                    <MainContainer onSubmitSearch={onSubmitSearch} countries={countries} onCountryClicked={onCountryClicked} error={error} searchedCountries={searchedCountries} />
+                    <MainContainer onSubmitSearch={onSubmitSearch} countries={countries} onCountryClicked={onCountryClicked} error={error} searchedCountries={searchedCountries} visitedList={visitedList} onBucketClick={onBucketClick} onVisitedClick={onVisitedClick}/>
                 } />
 
                 <Route exact path="/bucket" element={
