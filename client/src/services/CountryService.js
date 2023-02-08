@@ -14,7 +14,13 @@ export const getVisitedCountries = () => {
         .then(res => res.json())
 }
 
-
+export const putVisitedCountries = (payload) => {
+    return fetch(visitedURL + `/{payload._id}`, {
+        method: 'PUT',
+        body: JSON.stringify(payload),
+        headers: { 'Content-Type': 'application/json' }
+    })
+}
 
 export const postBucketCountry = (payload) => {
     return fetch(bucketURL, {

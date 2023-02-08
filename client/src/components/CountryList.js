@@ -12,7 +12,6 @@ const CountryList = ({countriesSlice, onCountryClicked}) => {
 
     return (  
         <>
-        <h3 className="list-title">Countries to Visit</h3>
         <div className="container">
             {CountryItems}
         </div>

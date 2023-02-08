@@ -45,6 +45,35 @@ const createRouter = function (collection) {
             });
     });
 
+    // router.put('/', (req, res) => {
+    //     const itemToUpdate = req.body
+    //     collection
+    //         .updateOne({$set:itemToUpdate})
+    //         .then(result => {
+    //             res.json(result)
+    //         })
+    //         .catch((err) => {
+    //             console.error(err);
+    //             res.status(500);
+    //             res.json({ status: 500, error: err });
+    //         });
+    // })
+
+    router.put('/:id', (req, res) => {
+        const id = req.params.id
+        const itemToUpdate = req.body
+        collection
+            .updateOne({_id:new ObjectId(id)}, {$set:itemToUpdate})
+            .then(result => {
+                res.json(result)
+            })
+            .catch((err) => {
+                console.error(err);
+                res.status(500);
+                res.json({ status: 500, error: err });
+            });
+    })
+
 
     return router
 }

@@ -2,6 +2,7 @@ import NavBar from "./NavBar.js";
 import { postBucketCountry, postVisitedCountry, deleteBucketCountry } from "../services/CountryService.js"
 import { useParams } from "react-router-dom";
 
+
 const CountryDetail = ({ removeBucketCountry, selectedCountry, addToBucket, addToVisited, bucketList, visitedList }) => {
 
     const {countryId} = useParams()
@@ -18,27 +19,17 @@ const CountryDetail = ({ removeBucketCountry, selectedCountry, addToBucket, addT
     const onVisitedClick = () => {
         if(visitedList.filter(country => country.cca2 === selectedCountry.cca2).length === 0 && bucketList.filter(country => country.cca2 === selectedCountry.cca2).length === 0) {
             postVisitedCountry(selectedCountry)
-            .then(()=>{
-            addToVisited(selectedCountry)
-            .then(() => {
-            deleteBucketCountry(countryId)
-                .then(() => {
-                removeBucketCountry(countryId)
-            })
+            .then((response)=>{
+                const copyOfSelectedCountry = {... selectedCountry}
+                copyOfSelectedCountry._id = response.insertedId
+                addToVisited(selectedCountry)
+                deleteBucketCountry(countryId)
+                    .then(() => {
+                    removeBucketCountry(countryId)
             })
         })
         }
     }
-
-    // const handleMove = () => {
-    //     const filteredCountry = bucketList.filter(country => country.cca2 === id)
-    //     console.log(filteredCountry[0])
-    //         postVisitedCountry(filteredCountry[0])
-    //             .then(() => { addToVisited(filteredCountry[0]) })
-    //         handleBucketDelete()
-    // }
-    //On CountryDetail page, the Add Visited button should delete the country from the BucketList if it's already there
-    //filter through BucketList with an id, if the
 
     return (
         <>
@@ -52,6 +43,7 @@ const CountryDetail = ({ removeBucketCountry, selectedCountry, addToBucket, addT
                 : "Already Visited "
             }
             <button type="Submit" value='add-to-visited' onClick={onVisitedClick}>Add Visited</button>
+            
         </>
     );
 }
