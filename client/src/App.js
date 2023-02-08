@@ -122,7 +122,7 @@ const App = () => {
                 } />
 
                 <Route path="/countries/:countryId" element={
-                    <CountryDetail removeBucketCountry={removeBucketCountry} selectedCountry={selectedCountry} addToBucket={addToBucket} addToVisited={addToVisited} bucketList={bucketList} visitedList={visitedList} />
+                    <CountryDetail onCountryClicked={onCountryClicked} countries={countries}removeBucketCountry={removeBucketCountry} selectedCountry={selectedCountry} addToBucket={addToBucket} addToVisited={addToVisited} bucketList={bucketList} visitedList={visitedList} />
                 } />
             </Routes>
         </>
