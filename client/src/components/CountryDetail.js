@@ -20,9 +20,9 @@ const CountryDetail = ({ removeBucketCountry, selectedCountry, addToBucket, addT
         if(visitedList.filter(country => country.cca2 === selectedCountry.cca2).length === 0 && bucketList.filter(country => country.cca2 === selectedCountry.cca2).length === 0) {
             postVisitedCountry(selectedCountry)
             .then((response)=>{
-                // const copyOfSelectedCountry = {...selectedCountry}
-                // copyOfSelectedCountry._id = response.insertedId
-                addToVisited(selectedCountry)
+                const copyOfSelectedCountry = {...selectedCountry}
+                copyOfSelectedCountry._id = response.insertedId
+                addToVisited(copyOfSelectedCountry)
                 deleteBucketCountry(countryId)
                     .then(() => {
                     removeBucketCountry(countryId)
@@ -34,7 +34,6 @@ const CountryDetail = ({ removeBucketCountry, selectedCountry, addToBucket, addT
     return (
         <>
             <NavBar/>
-styling/detailandtitle
             <div>
             <img src={selectedCountry.flags.png} alt={selectedCountry.flags.alt}/><br>
                 </br>

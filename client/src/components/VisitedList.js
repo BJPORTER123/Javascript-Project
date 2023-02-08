@@ -1,11 +1,11 @@
 import VisitedItem from "./VisitedItem";
 import NavBar from "./NavBar";
 
-const VisitedList = ({ visitedList, removeVisitedCountry, onCountryClicked }) => {
+const VisitedList = ({ visitedList,updateVisited, removeVisitedCountry, onCountryClicked }) => {
 
     const VisitedCountries = visitedList.map((country)=>{
 
-        return <VisitedItem country={country} key={country.cca2} removeVisitedCountry={removeVisitedCountry} visitedTrue={true} onCountryClicked={onCountryClicked} visitedList={visitedList}/>
+        return <VisitedItem updateVisited={updateVisited} country={country} key={country.cca2} removeVisitedCountry={removeVisitedCountry} visitedTrue={true} onCountryClicked={onCountryClicked} visitedList={visitedList}/>
     })
 
 

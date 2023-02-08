@@ -21,7 +21,7 @@ const TextContainer = styled.div`
     font-size: 0.85rem;
 `;
 
-function VisitedItem({ country, onCountryClicked, removeVisitedCountry }) {
+function VisitedItem({ updateVisited, country, onCountryClicked, removeVisitedCountry }) {
 
     const id = country.cca2
 
@@ -48,7 +48,8 @@ function VisitedItem({ country, onCountryClicked, removeVisitedCountry }) {
                 </Link>
             </li>
             <button onClick={handleVisitedDelete}>Delete</button>
-            <CommentBox country={country}/>
+            <CommentBox updateVisited={updateVisited}country={country}/>
+            <p>{country.comment}</p>
         </div>
     );
 }
