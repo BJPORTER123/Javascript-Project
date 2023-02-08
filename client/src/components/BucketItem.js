@@ -1,7 +1,7 @@
 import { deleteBucketCountry, deleteVisitedCountry, postVisitedCountry } from '../services/CountryService';
 import React from 'react';
-import './CountryItem.css'
 import { Link } from "react-router-dom"
+import "./BucketItem.css"
 
 
 
@@ -15,10 +15,10 @@ function BucketItem({ removeBucketCountry, country, onCountryClicked, bucketTrue
 
     const deleteButton = () => {
         if (bucketTrue) {
-            return <button onClick={handleBucketDelete}>Delete</button>
+            return <button className='delete-button' onClick={handleBucketDelete}/>
         }
         else if (visitedTrue) {
-            return <button onClick={handleVisitedDelete}>Delete</button>
+            return <button className='delete-button' onClick={handleVisitedDelete}/>
         }
     }
 
@@ -55,21 +55,21 @@ function BucketItem({ removeBucketCountry, country, onCountryClicked, bucketTrue
     }
    
     return (
-        <div>
-        <li className="country-item" onClick={handleClicked}>
-            <Link to={`/countries/${id}`}>
-                
-                <h4 className='country-title'>{country.name.common}</h4>
-                <img className="flag" src={country.flags.png} alt={country.flags.alt}/>
-            </Link>
-        </li>
-        {deleteButton()}
-        {moveToVisitedButton()}
-    </div>
-        
+        <div className="bucket-item">
+            <li onClick={handleClicked}>
+                <Link to={`/countries/${id}`}>
+                    <h4 className='bucket-title'>{country.name.common}</h4>
+                    <img className='bucket-flag'src={country.flags.png} alt={country.flags.alt}/>
+                </Link>
+            </li>
+            {deleteButton()}
+            {moveToVisitedButton()}
+        </div>
     );
-}
-
-
-
+ }
+    
+    
+    
 export default BucketItem;
+        
+                
