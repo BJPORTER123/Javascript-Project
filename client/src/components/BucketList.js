@@ -1,4 +1,4 @@
-import CountryItem from "./CountryItem";
+import BucketItem from "./BucketItem";
 import NavBar from "./NavBar";
 
 const BucketList = ({ bucketList, onCountryClicked, removeBucketCountry, addToVisited }) => {
@@ -6,7 +6,7 @@ const BucketList = ({ bucketList, onCountryClicked, removeBucketCountry, addToVi
 
     const BucketCountries = bucketList.map((country)=>{
 
-        return <CountryItem country={country} key={country.cca2} bucketTrue={true} onCountryClicked={onCountryClicked} removeBucketCountry={removeBucketCountry} bucketList={bucketList} addToVisited={addToVisited}/>
+        return <BucketItem country={country} key={country.cca2} bucketTrue={true} onCountryClicked={onCountryClicked} removeBucketCountry={removeBucketCountry} bucketList={bucketList} addToVisited={addToVisited}/>
     })
 
 
