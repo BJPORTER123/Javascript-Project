@@ -39,7 +39,7 @@ const App = () => {
                 .catch(err => setError(err.message))
         }
     }, [searchCountry]);
-    
+
 
     const refreshCountries = () => {
         fetch('https://restcountries.com/v3.1/all')
@@ -50,7 +50,7 @@ const App = () => {
             })
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         refreshCountries()
     }, [])
 
@@ -72,22 +72,17 @@ const App = () => {
     //         })
     // }, [])
 
-
-
-
     useEffect(() => {
         getBucketCountries()
             .then(bucketCountries => {
                 setBucketList(bucketCountries)
             })
-    }, []);
-
-    useEffect(() => {
         getVisitedCountries()
             .then(visitedCountries => {
                 setVisitedList(visitedCountries)
             })
     }, []);
+
 
     const onSubmitSearch = (searchCountry) => {
         setSearchCountry(searchCountry)
@@ -118,7 +113,6 @@ const App = () => {
             return country
         })
         setVisitedList(updatedList)
-
 
     }
     const removeBucketCountry = (id) => {
@@ -174,7 +168,7 @@ const App = () => {
                 <Route exact path="/" element={<Title />} />
 
                 <Route exact path="/countries" element={
-                    <MainContainer onSubmitSearch={onSubmitSearch} countries={countries} onCountryClicked={onCountryClicked} error={error} searchedCountries={searchedCountries} visitedList={visitedList} onBucketClick={onBucketClick} onVisitedClick={onVisitedClick} countryAddSuccess={countryAddSuccess} countryAddError={countryAddError} refreshCountries={refreshCountries}/>
+                    <MainContainer countries={countries} onCountryClicked={onCountryClicked} onSubmitSearch={onSubmitSearch} error={error} searchedCountries={searchedCountries} visitedList={visitedList} onBucketClick={onBucketClick} onVisitedClick={onVisitedClick} countryAddSuccess={countryAddSuccess} countryAddError={countryAddError} refreshCountries={refreshCountries} />
                 } />
 
                 <Route exact path="/bucket" element={
