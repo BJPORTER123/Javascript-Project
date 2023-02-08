@@ -1,6 +1,3 @@
-import BucketList from "../components/BucketList";
-
-const baseURL = 'http://localhost:9000/api/countries/';
 const bucketURL = 'http://localhost:9000/api/countries/BucketList';
 const visitedURL = 'http://localhost:9000/api/countries/VisitedList';
 
@@ -14,7 +11,13 @@ export const getVisitedCountries = () => {
         .then(res => res.json())
 }
 
-
+export const putVisitedCountries = (payload) => {
+    return fetch(visitedURL , {
+        method: 'PUT',
+        body: JSON.stringify(payload),
+        headers: { 'Content-Type': 'application/json' }
+    })
+}
 
 export const postBucketCountry = (payload) => {
     return fetch(bucketURL, {

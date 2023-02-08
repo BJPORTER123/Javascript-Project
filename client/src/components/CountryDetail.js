@@ -2,6 +2,7 @@ import NavBar from "./NavBar.js";
 import { postBucketCountry, postVisitedCountry, deleteBucketCountry } from "../services/CountryService.js"
 import { useParams } from "react-router-dom";
 
+
 const CountryDetail = ({ removeBucketCountry, selectedCountry, addToBucket, addToVisited, bucketList, visitedList }) => {
 
     const {countryId} = useParams()
@@ -18,13 +19,13 @@ const CountryDetail = ({ removeBucketCountry, selectedCountry, addToBucket, addT
     const onVisitedClick = () => {
         if(visitedList.filter(country => country.cca2 === selectedCountry.cca2).length === 0 && bucketList.filter(country => country.cca2 === selectedCountry.cca2).length === 0) {
             postVisitedCountry(selectedCountry)
-            .then(()=>{
-            addToVisited(selectedCountry)
-            .then(() => {
-            deleteBucketCountry(countryId)
-                .then(() => {
-                removeBucketCountry(countryId)
-            })
+            .then((response)=>{
+                // const copyOfSelectedCountry = {...selectedCountry}
+                // copyOfSelectedCountry._id = response.insertedId
+                addToVisited(selectedCountry)
+                deleteBucketCountry(countryId)
+                    .then(() => {
+                    removeBucketCountry(countryId)
             })
         })
         }
@@ -33,6 +34,7 @@ const CountryDetail = ({ removeBucketCountry, selectedCountry, addToBucket, addT
     return (
         <>
             <NavBar/>
+styling/detailandtitle
             <div>
             <img src={selectedCountry.flags.png} alt={selectedCountry.flags.alt}/><br>
                 </br>
@@ -41,11 +43,19 @@ const CountryDetail = ({ removeBucketCountry, selectedCountry, addToBucket, addT
                 {selectedCountry.capital} 
                 
             </div>
-            {visitedList.filter(country => country.cca2 === countryId).length === 0
-                ? <button type="Submit" value='add-to-bucket' onClick={onBucketClick} >Add Bucket</button>
-                : "Already Visited "
+            {visitedList.filter(country => country.cca2 === countryId).length === 0 && bucketList.filter(country => country.cca2 === countryId).length === 0
+                ? <div>
+                    <button type="Submit" value='add-to-bucket' onClick={onBucketClick} >Add Bucket</button> 
+                    <button type="Submit" value='add-to-visited' onClick={onVisitedClick}>Add Visited</button>
+                </div> 
+                : "Added to list!"
+
+ 
+
             }
-            <button type="Submit" value='add-to-visited' onClick={onVisitedClick}>Add Visited</button>
+        
+            
+            
         </>
     );
 }
