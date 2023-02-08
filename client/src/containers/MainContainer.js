@@ -21,7 +21,7 @@ const MainContainer = ({ countries, onCountryClicked, onSubmitSearch, addToVisit
                 }
             </div>
             <div>
-                <h3 className="list-title">Countries Suggestions</h3>
+                <h3 className="list-title">Country Suggestions</h3>
                 <CountryList countriesSlice={countries.slice(0, 20)} countries={countries} onCountryClicked={onCountryClicked} addToVisited={addToVisited} visitedList={visitedList} onBucketClick={onBucketClick} onVisitedClick={onVisitedClick}/>
             </div>
         </>
