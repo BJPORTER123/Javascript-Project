@@ -48,7 +48,7 @@ function VisitedItem({ country, onCountryClicked, removeVisitedCountry }) {
                 </Link>
             </li>
             <button onClick={handleVisitedDelete}>Delete</button>
-            <CommentBox/>
+            <CommentBox country={country}/>
         </div>
     );
 }

@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { putVisitedCountries } from '../services/CountryService';
 
-    const CommentBox = ({ onCommentSubmit }) => {
+
+
+    const CommentBox = ({ country }) => {
 
         const [comment, setComment] = useState("");
 
@@ -10,17 +13,16 @@ import { useState } from "react";
 
         const handleCommentSubmit = (evt) => {
             evt.preventDefault();
+            const copyOfCountry = {...country};
             const commentToSubmit = comment.trim();
-            if (!commentToSubmit) {
-                return
-            }
-
-            onCommentSubmit({
-                comment: commentToSubmit
-            });
-
+           
+            copyOfCountry.comment = commentToSubmit
+            putVisitedCountries(copyOfCountry);
+            console.log(copyOfCountry)
             setComment("");
-        }
+        };
+
+        
 
         return (
             <form onSubmit={handleCommentSubmit}>
@@ -36,8 +38,8 @@ import { useState } from "react";
                 />
             </form>
         )
-
-    }
+        }
+        
 
 export default CommentBox;
 

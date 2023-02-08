@@ -1,4 +1,5 @@
-const express = require('express')
+const express = require('express');
+const ObjectId = require('mongodb').ObjectId;
 
 const createRouter = function (collection) {
 
@@ -32,7 +33,7 @@ const createRouter = function (collection) {
     })
 
     router.delete('/', (req, res) => {
-        const itemToDelete = req.body
+        const itemToDelete = req.body.id
         collection
             .deleteOne(itemToDelete)
             .then(result => {
@@ -45,25 +46,12 @@ const createRouter = function (collection) {
             });
     });
 
-    // router.put('/', (req, res) => {
-    //     const itemToUpdate = req.body
-    //     collection
-    //         .updateOne({$set:itemToUpdate})
-    //         .then(result => {
-    //             res.json(result)
-    //         })
-    //         .catch((err) => {
-    //             console.error(err);
-    //             res.status(500);
-    //             res.json({ status: 500, error: err });
-    //         });
-    // })
-
-    router.put('/:id', (req, res) => {
-        const id = req.params.id
-        const itemToUpdate = req.body
+    router.put('/', (req, res) => {
+        const id = req.body._id
+        const userComment = req.body.comment
+        
         collection
-            .updateOne({_id:new ObjectId(id)}, {$set:itemToUpdate})
+            .updateOne({ _id : new ObjectId(id)}, { $set: { comment: userComment } })
             .then(result => {
                 res.json(result)
             })
