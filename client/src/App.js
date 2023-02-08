@@ -161,7 +161,7 @@ const App = () => {
                     deleteBucketCountry(clickedCountry.cca2)
                         .then(() => {
                             removeBucketCountry(clickedCountry.cca2)
-                            setCountryAddSuccess('Successfully posted')
+                            setCountryAddSuccess('Added to list!')
                             setCountryAddError(null)
                         })
                 })

@@ -16,7 +16,7 @@ const NavBar = () => {
                 <Link className="nav-link" to="/countries">Home</Link>
             </li>
             <li className="nav-li">
-                <Link className="nav-link" to="/bucket">Bucketlist</Link>
+                <Link className="nav-link" to="/bucket">Bucket List</Link>
             </li>
             <li className="nav-li">
                 <Link className="nav-link" to="/visited">Visited Countries</Link>
