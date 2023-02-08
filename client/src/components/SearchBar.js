@@ -1,6 +1,6 @@
 
 
-const SearchBar = ({ countries, onSubmitSearch, onCountryClicked, addToVisited, error }) => {
+const SearchBar = ({ onSubmitSearch }) => {
 
     return (
         <>

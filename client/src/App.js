@@ -28,7 +28,7 @@ const App = () => {
                     if (res.status === 200) {
                         return res.json();
                     } else if (res.status === 404) {
-                        throw new Error('No results found');
+                        throw new Error('No countries found');
                     } else {
                         throw new Error(`Server error: ${res.status}`);
                     }

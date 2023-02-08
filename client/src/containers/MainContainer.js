@@ -1,12 +1,9 @@
 import CountryList from '../components/CountryList';
 import NavBar from '../components/NavBar';
 import SearchBar from '../components/SearchBar';
-import SearchedCountries from '../components/SearchedCountries';
-
 
 
 const MainContainer = ({ countries, onCountryClicked, onSubmitSearch, addToVisited, error, searchedCountries }) => {
-
 
     return (
         <>
@@ -19,11 +16,14 @@ const MainContainer = ({ countries, onCountryClicked, onSubmitSearch, addToVisit
                     </>
                     :
                     <>
-                        <SearchedCountries searchedCountries={searchedCountries} onCountryClicked={onCountryClicked} addToVisited={addToVisited} />
+                        <CountryList countriesSlice={searchedCountries} countries={countries} onCountryClicked={onCountryClicked} addToVisited={addToVisited} />
                     </>
                 }
             </div>
-            <CountryList countriesSlice={countries.slice(0, 20)} countries={countries} onCountryClicked={onCountryClicked} addToVisited={addToVisited} />
+            <div>
+                <h3 className="list-title">Countries Suggestions</h3>
+                <CountryList countriesSlice={countries.slice(0, 20)} countries={countries} onCountryClicked={onCountryClicked} addToVisited={addToVisited} />
+            </div>
         </>
 
     )

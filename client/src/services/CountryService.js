@@ -22,8 +22,6 @@ export const putVisitedCountries = (payload) => {
     })
 }
 
-
-
 export const postBucketCountry = (payload) => {
     return fetch(bucketURL, {
         method: 'POST',
