@@ -101,11 +101,11 @@ const App = () => {
         setVisitedList(countriesToKeep)
     }
 
-    const onBucketClick = () => {
-        if (bucketList.filter(country => country.cca2 === selectedCountry.cca2).length === 0) {
-            postBucketCountry(selectedCountry)
+    const onBucketClick = (clickedCountry) => {
+        if (visitedList.filter(country => country.cca2 === clickedCountry.cca2).length === 0 && bucketList.filter(country => country.cca2 === clickedCountry.cca2).length === 0) {
+            postBucketCountry(clickedCountry)
                 .then(() => {
-                    addToBucket(selectedCountry)
+                    addToBucket(clickedCountry)
                 })
         }
     }

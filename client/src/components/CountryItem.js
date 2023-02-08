@@ -67,7 +67,7 @@ function CountryItem({ removeBucketCountry, country, onCountryClicked, bucketTru
         {
         // visitedList.filter(filteredCountry => filteredCountry.cca2 === country.cca2).length === 0 && bucketList.filter(filteredCountry => filteredCountry.cca2 === country.cca2).length === 0 ? 
         <div>
-                    <button type="Submit" value='add-to-bucket' onClick={onBucketClick} >Add Bucket</button>
+                    <button type="Submit" value='add-to-bucket' onClick={() => onBucketClick(country)} >Add Bucket</button>
                     <button type="Submit" value='add-to-visited' onClick={() => onVisitedClick(country)}>Add Visited</button>
                 </div>
                 // : "Added to list!"
