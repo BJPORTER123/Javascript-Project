@@ -39,16 +39,7 @@ const App = () => {
                 .catch(err => setError(err.message))
         }
     }, [searchCountry]);
-
-
-    useEffect(() => {
-        fetch('https://restcountries.com/v3.1/all')
-            .then(res => res.json())
-            .then(countries => {
-                const shuffledCountries = countries.sort(() => Math.random() - 0.5);
-                setCountries(shuffledCountries);
-            })
-    }, [])
+    
 
     const refreshCountries = () => {
         fetch('https://restcountries.com/v3.1/all')
@@ -58,6 +49,10 @@ const App = () => {
                 setCountries(shuffledCountries)
             })
     }
+
+    useEffect(()=>{
+        refreshCountries()
+    }, [])
 
     // ALPHABETICALLY SORTED:
     // useEffect(() => {
