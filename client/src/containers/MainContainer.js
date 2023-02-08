@@ -17,7 +17,7 @@ const MainContainer = ({ countries, onCountryClicked, onSubmitSearch, addToVisit
                     </>
                     :
                     <>
-                        <CountryList countriesSlice={searchedCountries} countries={countries} onCountryClicked={onCountryClicked} addToVisited={addToVisited} visitedList={visitedList} onBucketClick={onBucketClick} onVisitedClick={onVisitedClick} />
+                        <CountryList countries={searchedCountries} onCountryClicked={onCountryClicked} addToVisited={addToVisited} visitedList={visitedList} onBucketClick={onBucketClick} onVisitedClick={onVisitedClick} />
                     </>
                 }
             </div>
@@ -26,7 +26,7 @@ const MainContainer = ({ countries, onCountryClicked, onSubmitSearch, addToVisit
                 <div>
                     <button onClick={refreshCountries}>Load New Countries</button>
                 </div>
-                <CountryList countriesSlice={countries.slice(0, 20)} countries={countries} onCountryClicked={onCountryClicked} addToVisited={addToVisited} visitedList={visitedList} onBucketClick={onBucketClick} onVisitedClick={onVisitedClick} />
+                <CountryList countries={countries.slice(0, 20)}  onCountryClicked={onCountryClicked} addToVisited={addToVisited} visitedList={visitedList} onBucketClick={onBucketClick} onVisitedClick={onVisitedClick} />
             </div>
 
         </>

@@ -1,4 +1,3 @@
-import React from 'react';
 import './CountryItem.css'
 import { Link } from "react-router-dom"
 
