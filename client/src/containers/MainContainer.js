@@ -2,12 +2,14 @@ import CountryList from '../components/CountryList';
 import NavBar from '../components/NavBar';
 import SearchBar from '../components/SearchBar';
 import Footer from '../components/Footer.js';
+import '../components/Footer.css'
 
 
 const MainContainer = ({ countries, onCountryClicked, onSubmitSearch, error, searchedCountries, visitedList, onBucketClick, onVisitedClick, countryAddSuccess, countryAddError, refreshCountries, resetSearchedItem}) => {
 
     return (
-        <>
+        <div id="page-container">
+            <div id ="content-wrap">
             <NavBar resetSearchedItem={resetSearchedItem}/>
             <SearchBar onSubmitSearch={onSubmitSearch} resetSearchedItem={resetSearchedItem} />
             <h4>{countryAddSuccess}{countryAddError}</h4>
@@ -31,10 +33,10 @@ const MainContainer = ({ countries, onCountryClicked, onSubmitSearch, error, sea
                 <CountryList countries={countries.slice(0, 20)}  onCountryClicked={onCountryClicked} visitedList={visitedList} onBucketClick={onBucketClick} onVisitedClick={onVisitedClick} />
 
             </div>
-
+            </div>
             <Footer/>
 
-        </>
+        </div>
 
     )
 }
