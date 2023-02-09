@@ -1,7 +1,7 @@
 import VisitedItem from "./VisitedItem";
 import NavBar from "./NavBar";
 import "./CountryList.css"
-import Footer from "./Footer";
+import Footer from "./Footer.js";
 
 const VisitedList = ({ visitedList,updateVisited, removeVisitedCountry, onCountryClicked }) => {
 
@@ -12,14 +12,16 @@ const VisitedList = ({ visitedList,updateVisited, removeVisitedCountry, onCountr
 
 
     return (  
-        <>
+        <div id="page-container">
+            <div id ="content-wrap">
         <NavBar/>
         <h2>Visited List</h2>
         <div className="container">
         {VisitedCountries}
         </div>
+        </div>
         <Footer/>
-        </>
+        </div>
     );
 }
 
