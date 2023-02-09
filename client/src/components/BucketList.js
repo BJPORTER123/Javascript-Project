@@ -1,6 +1,7 @@
 import BucketItem from "./BucketItem";
 import Footer from "./Footer";
 import NavBar from "./NavBar";
+import "./Footer.css"
 
 const BucketList = ({ bucketList, onCountryClicked, removeBucketCountry, addToVisited }) => {
 
@@ -12,14 +13,16 @@ const BucketList = ({ bucketList, onCountryClicked, removeBucketCountry, addToVi
 
 
     return (  
-        <>
+        <div id="page-container">
+            <div id ="content-wrap">
         <NavBar/>
         <h2>Bucket List</h2>
         <div className="container">
         {BucketCountries}
         </div>
+        </div>
         <Footer/>
-        </>
+        </div>
     );
 }
 

@@ -12,14 +12,16 @@ const VisitedList = ({ visitedList,updateVisited, removeVisitedCountry, onCountr
 
 
     return (  
-        <>
+        <div id="page-container">
+            <div id ="content-wrap">
         <NavBar/>
         <h2>Visited List</h2>
         <div className="container">
         {VisitedCountries}
         </div>
+        </div>
         <Footer/>
-        </>
+        </div>
     );
 }
 
