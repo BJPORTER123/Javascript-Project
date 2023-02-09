@@ -1,0 +1,16 @@
+.message-button {
+    display: flex;
+    justify-content: center;
+}
+
+.refresh-button {
+    display: flex;
+    justify-content: center;
+    
+}
+
+.button-for-refresh {
+    background-color: rgb(68, 147, 231);
+    border-radius: 5px;
+    color: white;
+}
