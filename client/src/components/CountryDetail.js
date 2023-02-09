@@ -44,6 +44,7 @@ const CountryDetail = ({ removeBucketCountry, onCountryClicked,countries, select
         <>
             <NavBar />
             <div className="details-container">
+            
             {selectedCountry._id
                 ? <div>
                     <h2 className="country-header">Visited Counrty Log</h2>
@@ -69,8 +70,6 @@ const CountryDetail = ({ removeBucketCountry, onCountryClicked,countries, select
             <h3 className="continent-header">Continent</h3>
             <div className="country-continent">{selectedCountry.continents}</div>
             <h3 className="status-header">Visited?</h3>
-            </div>
-
             {visitedList.filter(country => country.cca2 === countryId).length === 0 && bucketList.filter(country => country.cca2 === countryId).length === 0
                 ? <div className="details-buttons">
                     <button className="bucket-button" type="Submit" value='add-to-bucket' onClick={onBucketClick} >Add Bucket</button>
@@ -78,6 +77,9 @@ const CountryDetail = ({ removeBucketCountry, onCountryClicked,countries, select
                 </div>
                 : "Added to list!"
             }
+            </div>
+
+            
         </>
     );
 }
