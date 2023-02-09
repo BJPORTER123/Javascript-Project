@@ -39,13 +39,41 @@ const App = () => {
                 .catch(err => setError(err.message))
         }
     }, [searchCountry]);
+    
 
-
-    useEffect(() => {
+    const refreshCountries = () => {
         fetch('https://restcountries.com/v3.1/all')
             .then(res => res.json())
-            .then(data => setCountries(data))
-    }, []);
+            .then(countries => {
+                const shuffledCountries = countries.sort(() => Math.random() - 0.5)
+                setCountries(shuffledCountries)
+            })
+    }
+
+    useEffect(()=>{
+        refreshCountries()
+    }, [])
+
+    // ALPHABETICALLY SORTED:
+    // useEffect(() => {
+    //     fetch('https://restcountries.com/v3.1/all')
+    //         .then(res => res.json())
+    //         .then(countries => {
+    //             const sortedCountries = countries.sort((a, b) => {
+    //                 if (a.name.common < b.name.common) {
+    //                     return -1
+    //                 } else if (a.name.common > b.name.common) {
+    //                     return 1
+    //                 }
+    //                 return 0
+    //             })
+    //             console.log(sortedCountries)
+    //             setCountries(sortedCountries)
+    //         })
+    // }, [])
+
+
+
 
     useEffect(() => {
         getBucketCountries()
@@ -112,7 +140,7 @@ const App = () => {
                     setCountryAddError(null)
                 })
         }
-        else if (visitedList.filter(country => country.cca2 === clickedCountry.cca2).length > 0 ||bucketList.filter(country => country.cca2 === clickedCountry.cca2).length > 0) {
+        else if (visitedList.filter(country => country.cca2 === clickedCountry.cca2).length > 0 || bucketList.filter(country => country.cca2 === clickedCountry.cca2).length > 0) {
             setCountryAddSuccess(null)
             setCountryAddError(`Can't add, ${clickedCountry.name.common} is already on a list`)
         }
@@ -128,13 +156,13 @@ const App = () => {
                     deleteBucketCountry(clickedCountry.cca2)
                         .then(() => {
                             removeBucketCountry(clickedCountry.cca2)
-                            setCountryAddSuccess('Successfully posted')
+                            setCountryAddSuccess('Added to list!')
                             setCountryAddError(null)
 
                         })
                 })
         }
-        else if (visitedList.filter(country => country.cca2 === clickedCountry.cca2).length >0 ||bucketList.filter(country => country.cca2 === clickedCountry.cca2).length > 0) {
+        else if (visitedList.filter(country => country.cca2 === clickedCountry.cca2).length > 0 || bucketList.filter(country => country.cca2 === clickedCountry.cca2).length > 0) {
             setCountryAddSuccess(null)
             setCountryAddError(`Can't add, ${clickedCountry.name.common} is already on a list`)
         }
@@ -148,7 +176,7 @@ const App = () => {
                 <Route exact path="/" element={<Title />} />
 
                 <Route exact path="/countries" element={
-                    <MainContainer onSubmitSearch={onSubmitSearch} countries={countries} onCountryClicked={onCountryClicked} error={error} searchedCountries={searchedCountries} visitedList={visitedList} onBucketClick={onBucketClick} onVisitedClick={onVisitedClick} countryAddSuccess={countryAddSuccess} countryAddError={countryAddError} />
+                    <MainContainer onSubmitSearch={onSubmitSearch} countries={countries} onCountryClicked={onCountryClicked} error={error} searchedCountries={searchedCountries} visitedList={visitedList} onBucketClick={onBucketClick} onVisitedClick={onVisitedClick} countryAddSuccess={countryAddSuccess} countryAddError={countryAddError} refreshCountries={refreshCountries}/>
                 } />
 
                 <Route exact path="/bucket" element={
