@@ -1,11 +1,19 @@
 import NavBar from "./NavBar.js";
 import { postBucketCountry, postVisitedCountry, deleteBucketCountry } from "../services/CountryService.js"
 import { useParams } from "react-router-dom";
+import CountryList from "./CountryList.js";
 
 
-const CountryDetail = ({ removeBucketCountry, selectedCountry, addToBucket, addToVisited, bucketList, visitedList }) => {
+const CountryDetail = ({ removeBucketCountry, onCountryClicked,countries, selectedCountry, addToBucket, addToVisited, bucketList, visitedList }) => {
 
     const { countryId } = useParams()
+
+
+    if (!selectedCountry){
+        const countryThatShouldBeSelected = countries.find((country) => country.cca2 == countryId)
+        onCountryClicked(countryThatShouldBeSelected)
+        return <h1>Loading...</h1>
+    }
 
     const onBucketClick = () => {
         if (bucketList.filter(country => country.cca2 === selectedCountry.cca2).length === 0) {
@@ -30,12 +38,15 @@ const CountryDetail = ({ removeBucketCountry, selectedCountry, addToBucket, addT
                 })
         }
     }
+    console.log(selectedCountry)
 
     return (
         <>
             <NavBar />
             <div>
+
                 <img src={selectedCountry.flags.png} alt={selectedCountry.flags.alt} /><br>
+
                 </br>
                 {selectedCountry.name.common} <br>
                 </br>

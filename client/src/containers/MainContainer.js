@@ -27,6 +27,7 @@ const MainContainer = ({ countries, onCountryClicked, onSubmitSearch, addToVisit
                     <button onClick={refreshCountries}>Load New Countries</button>
                 </div>
                 <CountryList countriesSlice={countries.slice(0, 20)} countries={countries} onCountryClicked={onCountryClicked} addToVisited={addToVisited} visitedList={visitedList} onBucketClick={onBucketClick} onVisitedClick={onVisitedClick} />
+
             </div>
 
         </>

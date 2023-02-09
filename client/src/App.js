@@ -158,6 +158,7 @@ const App = () => {
                             removeBucketCountry(clickedCountry.cca2)
                             setCountryAddSuccess('Added to list!')
                             setCountryAddError(null)
+
                         })
                 })
         }
@@ -166,6 +167,7 @@ const App = () => {
             setCountryAddError(`Can't add, ${clickedCountry.name.common} is already on a list`)
         }
     }
+
 
     return (
         <>
@@ -186,7 +188,7 @@ const App = () => {
                 } />
 
                 <Route path="/countries/:countryId" element={
-                    <CountryDetail removeBucketCountry={removeBucketCountry} selectedCountry={selectedCountry} addToBucket={addToBucket} addToVisited={addToVisited} bucketList={bucketList} visitedList={visitedList} />
+                    <CountryDetail onCountryClicked={onCountryClicked} countries={countries}removeBucketCountry={removeBucketCountry} selectedCountry={selectedCountry} addToBucket={addToBucket} addToVisited={addToVisited} bucketList={bucketList} visitedList={visitedList} />
                 } />
             </Routes>
         </>
