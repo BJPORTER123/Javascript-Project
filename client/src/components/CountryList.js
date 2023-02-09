@@ -2,16 +2,14 @@ import CountryItem from "./CountryItem";
 import './CountryList.css'
 
 
-const CountryList = ({ countriesSlice, onCountryClicked, visitedList, onBucketClick, onVisitedClick, countryAddSuccess, countryAddError }) => {
+const CountryList = ({ countries, onCountryClicked, onBucketClick, onVisitedClick }) => {
 
-    const CountryItems = countriesSlice.map((country) => {
-        return <CountryItem country={country} onCountryClicked={onCountryClicked} key={country.cca2} visitedList={visitedList} onBucketClick={onBucketClick} onVisitedClick={onVisitedClick} countryAddSuccess={countryAddSuccess} countryAddError={countryAddError} />
+    const CountryItems = countries.map((country) => {
+        return <CountryItem country={country} onCountryClicked={onCountryClicked} key={country.cca2} onBucketClick={onBucketClick} onVisitedClick={onVisitedClick}  />
     })
 
     return (
         <>
-            {countryAddSuccess && <div>{countryAddSuccess}</div>}
-            {countryAddError && <div>{countryAddError}</div>}
             <div className="container">
                 {CountryItems}
             </div>
