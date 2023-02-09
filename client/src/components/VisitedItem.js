@@ -1,25 +1,9 @@
 import { deleteVisitedCountry } from '../services/CountryService';
 import React from 'react';
-import './CountryItem.css'
-import styled from 'styled-components';
 import { Link } from "react-router-dom"
 import CommentBox from './CommentBox';
-
-const Flag = styled.p`
-    display: inline-block;
-    position: absolute;
-    top: 15px;
-    right: 50px;
-    transform: scale(4.5);
-`;
-
-const TextContainer = styled.div`
-    width: 80%;
-    padding-right: 70px;
-    color: rgb(1, 8, 8);
-    background-color: azure;
-    font-size: 0.85rem;
-`;
+import "./VisitedItem.css"
+import "./BucketItem.css"
 
 function VisitedItem({ updateVisited, country, onCountryClicked, removeVisitedCountry }) {
 
@@ -38,18 +22,17 @@ function VisitedItem({ updateVisited, country, onCountryClicked, removeVisitedCo
     }
 
     return (
-        <div>
-            <li className="country-item" onClick={handleClicked}>
+        <div className='visited-item'>
+            <li  onClick={handleClicked}>
                 <Link to={`/countries/${id}`}>
-                    <TextContainer>
-                        <h4>{country.name.common}</h4>
-                    </TextContainer>
-                    <Flag>{country.flag}</Flag>
+                    <h4 className='visited-title'>{country.name.common}</h4>
+                    <img className='visited-flag' src={country.flags.png} alt={country.flags.alt}/>
                 </Link>
             </li>
-            <button onClick={handleVisitedDelete}>Delete</button>
-            <CommentBox updateVisited={updateVisited}country={country}/>
+            <button className='delete-button' onClick={handleVisitedDelete}></button>
+            <h6 className='comment-title'>Comments:</h6>
             <p>{country.comment}</p>
+            <CommentBox className="comment-box" updateVisited={updateVisited}country={country}/>
         </div>
     );
 }

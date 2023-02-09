@@ -1,0 +1,63 @@
+.bucket-item {
+    list-style: none;
+    flex: 1;
+    min-width: 380px;
+    max-width: 400px;
+    height: 410px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    outline: 1px solid black;
+    border-radius: 30px;
+    margin: 20px;
+    box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.34), 0px 20px 35px rgba(0, 0, 0, 0.407);
+}
+
+.bucket-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center; 
+    color: white;
+    background-color: transparent;
+    font-size: 1.2rem;
+    position: absolute;
+    left: 50%; 
+    transform: translate(-50%, -50%);
+    width: 100%;
+    z-index: 1;
+    text-shadow: 1px 1px black, -1px -1px black, 1px -1px black, -1px 1px black;
+    }
+.bucket-flag {
+    display: flex;
+    object-fit: cover;
+    height: 180px;
+    width: 300px;
+}
+
+.delete-button {
+    display: flex;
+    flex: row;
+    align-items: center;
+    position: absolute;
+    background-color: transparent;
+    top: 340px;
+    z-index: 2;
+    background-image: url('../images/bin-closed.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    border: none;
+    background-size: contain;
+    width: 50px;
+    height: 50px;
+}
+
+.delete-button:hover{
+    background-image: url('../images/bin-open.png');
+    width: 55px;
+    height: 55px;
+
+}
