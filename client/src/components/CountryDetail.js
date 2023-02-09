@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import './CountryDetail.css'
 import CountryList from "./CountryList.js";
 import Footer from "./Footer.js";
+import './CountryDetail.css'
 
 
 const CountryDetail = ({ removeBucketCountry, onCountryClicked,countries, selectedCountry, addToBucket, addToVisited, bucketList, visitedList }) => {
@@ -60,7 +61,7 @@ const CountryDetail = ({ removeBucketCountry, onCountryClicked,countries, select
             {selectedCountry.comment
             ? <div>
             <h3 className="comment-header">Comments:</h3>
-            <div className="country-comment">{selectedCountry.comment}</div>
+            <p className="country-comment">{selectedCountry.comment}</p>
             </div>
             : ""
             }
