@@ -1,5 +1,6 @@
 import VisitedItem from "./VisitedItem";
 import NavBar from "./NavBar";
+import "./CountryList.css"
 
 const VisitedList = ({ visitedList,updateVisited, removeVisitedCountry, onCountryClicked }) => {
 
@@ -13,7 +14,9 @@ const VisitedList = ({ visitedList,updateVisited, removeVisitedCountry, onCountr
         <>
         <NavBar/>
         <h2>Visited List</h2>
+        <div className="container">
         {VisitedCountries}
+        </div>
 
         </>
     );

@@ -9,7 +9,6 @@ function CountryItem({ country, onCountryClicked, onBucketClick, onVisitedClick}
         onCountryClicked(country)
     }
 
-
     return (
         <div>
             <li className="country-item" onClick={handleClicked}>
@@ -25,6 +24,7 @@ function CountryItem({ country, onCountryClicked, onBucketClick, onVisitedClick}
                 <button type="Submit" value='add-to-visited' onClick={() => onVisitedClick(country)}>Add Visited</button>
             </div>
         </div>
+
 
     );
 }
