@@ -4,12 +4,13 @@ import SearchBar from '../components/SearchBar';
 import Footer from '../components/Footer.js';
 
 
-const MainContainer = ({ countries, onCountryClicked, onSubmitSearch, addToVisited, error, searchedCountries, visitedList, onBucketClick, onVisitedClick}) => {
+const MainContainer = ({ countries, onCountryClicked, onSubmitSearch, error, searchedCountries, visitedList, onBucketClick, onVisitedClick, countryAddSuccess, countryAddError, refreshCountries, resetSearchedItem}) => {
 
     return (
         <>
-            <NavBar />
-            <SearchBar onSubmitSearch={onSubmitSearch} />
+            <NavBar resetSearchedItem={resetSearchedItem}/>
+            <SearchBar onSubmitSearch={onSubmitSearch} resetSearchedItem={resetSearchedItem} />
+            <h4>{countryAddSuccess}{countryAddError}</h4>
             <div>
                 {error ?
                     <>
@@ -17,15 +18,22 @@ const MainContainer = ({ countries, onCountryClicked, onSubmitSearch, addToVisit
                     </>
                     :
                     <>
-                        <CountryList countriesSlice={searchedCountries} countries={countries} onCountryClicked={onCountryClicked} addToVisited={addToVisited} visitedList={visitedList} onBucketClick={onBucketClick} onVisitedClick={onVisitedClick}/>
+                        <CountryList countries={searchedCountries} onCountryClicked={onCountryClicked} visitedList={visitedList} onBucketClick={onBucketClick} onVisitedClick={onVisitedClick} />
                     </>
                 }
             </div>
             <div>
                 <h3 className="list-title">Country Suggestions</h3>
-                <CountryList countriesSlice={countries.slice(0, 20)} countries={countries} onCountryClicked={onCountryClicked} addToVisited={addToVisited} visitedList={visitedList} onBucketClick={onBucketClick} onVisitedClick={onVisitedClick}/>
+                <div>
+                    <button onClick={refreshCountries}>Load New Countries</button>
+                </div>
+
+                <CountryList countries={countries.slice(0, 20)}  onCountryClicked={onCountryClicked} visitedList={visitedList} onBucketClick={onBucketClick} onVisitedClick={onVisitedClick} />
+
             </div>
+
             <Footer/>
+
         </>
 
     )

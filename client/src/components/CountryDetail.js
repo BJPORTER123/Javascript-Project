@@ -44,19 +44,38 @@ const CountryDetail = ({ removeBucketCountry, onCountryClicked,countries, select
     return (
         <>
             <NavBar />
-            <div>
-
-                <img src={selectedCountry.flags.png} alt={selectedCountry.flags.alt} /><br>
-
-                </br>
-                {selectedCountry.name.common} <br>
-                </br>
-                {selectedCountry.capital}
-            </div>
-            {visitedList.filter(country => country.cca2 === countryId).length === 0 && bucketList.filter(country => country.cca2 === countryId).length === 0
+            <div className="details-container">
+            {selectedCountry._id
                 ? <div>
-                    <button type="Submit" value='add-to-bucket' onClick={onBucketClick} >Add Bucket</button>
-                    <button type="Submit" value='add-to-visited' onClick={onVisitedClick}>Add Visited</button>
+                    <h2 className="country-header">Visited Counrty Log</h2>
+                </div>
+                : <h2 className="country-header">Counrty Details</h2>
+            }                
+            <br />
+            <img className="flag-image" src={selectedCountry.flags.png} alt={selectedCountry.flags.alt} /><br />
+
+            <div className="country-name">{selectedCountry.name.common}</div>
+            {selectedCountry.comment
+            ? <div>
+            <h3 className="comment-header">Comments:</h3>
+            <div className="country-comment">{selectedCountry.comment}</div>
+            </div>
+            : ""
+            }
+
+            <h3 className="capital-header">Capital:</h3>
+            <div className="country-capital">{selectedCountry.capital}</div>
+            <h3 className="currency-header">Currency:</h3>
+            <div className="country-currency">{Object.values(selectedCountry.currencies)[0].name}</div>
+            <h3 className="continent-header">Continent</h3>
+            <div className="country-continent">{selectedCountry.continents}</div>
+            <h3 className="status-header">Visited?</h3>
+            </div>
+
+            {visitedList.filter(country => country.cca2 === countryId).length === 0 && bucketList.filter(country => country.cca2 === countryId).length === 0
+                ? <div className="details-buttons">
+                    <button className="bucket-button" type="Submit" value='add-to-bucket' onClick={onBucketClick} >Add Bucket</button>
+                    <button className="visited-button" type="Submit" value='add-to-visited' onClick={onVisitedClick}>Add Visited</button>
                 </div>
                 : "Added to list!"
             }

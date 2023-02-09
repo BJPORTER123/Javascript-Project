@@ -1,0 +1,56 @@
+.details-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+  }
+  
+  .country-header {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+  
+  .flag-image {
+    width: 300px;
+    height: 200px;
+    margin-bottom: 20px;
+  }
+  
+  .country-name {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .comment-header, .capital-header, .currency-header, .continent-header, .status-header {
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .country-comment, .country-capital, .country-currency, .country-continent {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+  
+  .details-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 200px;
+    margin-top: 20px;
+  }
+  
+  .bucket-button, .visited-button {
+    width: 90px;
+    height: 30px;
+    font-size: 14px;
+    background-color: lightgray;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .bucket-button:hover, .visited-button:hover {
+    background-color: gray;
+    color: white;
+  }
+  

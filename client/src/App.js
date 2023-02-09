@@ -19,6 +19,8 @@ const App = () => {
     const [visitedList, setVisitedList] = useState([])
     const [searchedCountries, setSearchedCountries] = useState([])
     const [error, setError] = useState(null)
+    const [countryAddSuccess, setCountryAddSuccess] = useState(null)
+    const [countryAddError, setCountryAddError] = useState(null)
 
 
     useEffect(() => {
@@ -39,25 +41,51 @@ const App = () => {
     }, [searchCountry]);
 
 
-    useEffect(() => {
+    const refreshCountries = () => {
         fetch('https://restcountries.com/v3.1/all')
             .then(res => res.json())
-            .then(data => setCountries(data))
-    }, []);
+            .then(countries => {
+                const shuffledCountries = countries.sort(() => Math.random() - 0.5)
+                setCountries(shuffledCountries)
+            })
+    }
+
+    useEffect(() => {
+        refreshCountries()
+    }, [])
+
+    // ALPHABETICALLY SORTED:
+    // useEffect(() => {
+    //     fetch('https://restcountries.com/v3.1/all')
+    //         .then(res => res.json())
+    //         .then(countries => {
+    //             const sortedCountries = countries.sort((a, b) => {
+    //                 if (a.name.common < b.name.common) {
+    //                     return -1
+    //                 } else if (a.name.common > b.name.common) {
+    //                     return 1
+    //                 }
+    //                 return 0
+    //             })
+    //             console.log(sortedCountries)
+    //             setCountries(sortedCountries)
+    //         })
+    // }, [])
 
     useEffect(() => {
         getBucketCountries()
             .then(bucketCountries => {
                 setBucketList(bucketCountries)
             })
-    }, []);
-
-    useEffect(() => {
         getVisitedCountries()
             .then(visitedCountries => {
                 setVisitedList(visitedCountries)
             })
     }, []);
+
+    const resetSearchedItem = () => {
+        setSearchCountry(null)
+      }
 
     const onSubmitSearch = (searchCountry) => {
         setSearchCountry(searchCountry)
@@ -81,14 +109,13 @@ const App = () => {
     }
 
     const updateVisited = (updatedCountry) => {
-        const updatedList = visitedList.map((country)=>{
-            if(country._id === updatedCountry._id){
-                return{...country, comment: updatedCountry.comment}
+        const updatedList = visitedList.map((country) => {
+            if (country._id === updatedCountry._id) {
+                return { ...country, comment: updatedCountry.comment }
             }
             return country
         })
         setVisitedList(updatedList)
-            
 
     }
     const removeBucketCountry = (id) => {
@@ -106,7 +133,13 @@ const App = () => {
             postBucketCountry(clickedCountry)
                 .then(() => {
                     addToBucket(clickedCountry)
+                    setCountryAddSuccess('Added to list!')
+                    setCountryAddError(null)
                 })
+        }
+        else if (visitedList.filter(country => country.cca2 === clickedCountry.cca2).length > 0 || bucketList.filter(country => country.cca2 === clickedCountry.cca2).length > 0) {
+            setCountryAddSuccess(null)
+            setCountryAddError(`Can't add, ${clickedCountry.name.common} is already on a list`)
         }
     }
 
@@ -120,8 +153,15 @@ const App = () => {
                     deleteBucketCountry(clickedCountry.cca2)
                         .then(() => {
                             removeBucketCountry(clickedCountry.cca2)
+                            setCountryAddSuccess('Added to list!')
+                            setCountryAddError(null)
+
                         })
                 })
+        }
+        else if (visitedList.filter(country => country.cca2 === clickedCountry.cca2).length > 0 || bucketList.filter(country => country.cca2 === clickedCountry.cca2).length > 0) {
+            setCountryAddSuccess(null)
+            setCountryAddError(`Can't add, ${clickedCountry.name.common} is already on a list`)
         }
     }
 
@@ -133,7 +173,7 @@ const App = () => {
                 <Route exact path="/" element={<Title />} />
 
                 <Route exact path="/countries" element={
-                    <MainContainer onSubmitSearch={onSubmitSearch} countries={countries} onCountryClicked={onCountryClicked} error={error} searchedCountries={searchedCountries} visitedList={visitedList} onBucketClick={onBucketClick} onVisitedClick={onVisitedClick}/>
+                    <MainContainer countries={countries} onCountryClicked={onCountryClicked} onSubmitSearch={onSubmitSearch} error={error} searchedCountries={searchedCountries} visitedList={visitedList} onBucketClick={onBucketClick} onVisitedClick={onVisitedClick} countryAddSuccess={countryAddSuccess} countryAddError={countryAddError} refreshCountries={refreshCountries} resetSearchedItem={resetSearchedItem}/>
                 } />
 
                 <Route exact path="/bucket" element={
