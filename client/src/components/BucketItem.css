@@ -39,6 +39,7 @@
 
 .delete-button {
     display: flex;
+    padding-top: 100px;
     flex: row;
     align-items: center;
     position: absolute;

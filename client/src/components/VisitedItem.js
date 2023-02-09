@@ -31,7 +31,7 @@ function VisitedItem({ updateVisited, country, onCountryClicked, removeVisitedCo
             </li>
             <button className='delete-button' onClick={handleVisitedDelete}></button>
             <h6 className='comment-title'>Comments:</h6>
-            <p>{country.comment}</p>
+            <p className="comment-p">{country.comment}</p>
             <CommentBox className="comment-box" updateVisited={updateVisited}country={country}/>
         </div>
     );

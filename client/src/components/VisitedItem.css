@@ -3,7 +3,7 @@
     flex: 1;
     min-width: 380px;
     max-width: 400px;
-    height: 410px;
+    height: 430px;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -13,6 +13,13 @@
     border-radius: 30px;
     margin: 20px;
     box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.34), 0px 20px 35px rgba(0, 0, 0, 0.407);
+}
+
+.comment-p {
+    width: 100px;
+    border: 1px solid green;
+    padding: 10px;
+    overflow: hidden;
 }
 
 .visited-title {
