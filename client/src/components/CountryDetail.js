@@ -1,7 +1,8 @@
 import NavBar from "./NavBar.js";
 import { postBucketCountry, postVisitedCountry, deleteBucketCountry } from "../services/CountryService.js"
 import { useParams } from "react-router-dom";
-import './CountryDetail.css'
+import CountryList from "./CountryList.js";
+import Footer from "./Footer.js";
 
 
 const CountryDetail = ({ removeBucketCountry, onCountryClicked,countries, selectedCountry, addToBucket, addToVisited, bucketList, visitedList }) => {
@@ -77,6 +78,7 @@ const CountryDetail = ({ removeBucketCountry, onCountryClicked,countries, select
                 </div>
                 : "Added to list!"
             }
+
             </div>
 
             

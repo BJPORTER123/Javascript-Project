@@ -1,4 +1,5 @@
 import BucketItem from "./BucketItem";
+import Footer from "./Footer";
 import NavBar from "./NavBar";
 
 const BucketList = ({ bucketList, onCountryClicked, removeBucketCountry, addToVisited }) => {
@@ -17,6 +18,7 @@ const BucketList = ({ bucketList, onCountryClicked, removeBucketCountry, addToVi
         <div className="container">
         {BucketCountries}
         </div>
+        <Footer/>
         </>
     );
 }

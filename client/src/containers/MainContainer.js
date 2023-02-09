@@ -1,6 +1,7 @@
 import CountryList from '../components/CountryList';
 import NavBar from '../components/NavBar';
 import SearchBar from '../components/SearchBar';
+import Footer from '../components/Footer.js';
 
 
 const MainContainer = ({ countries, onCountryClicked, onSubmitSearch, error, searchedCountries, visitedList, onBucketClick, onVisitedClick, countryAddSuccess, countryAddError, refreshCountries, resetSearchedItem}) => {
@@ -30,6 +31,8 @@ const MainContainer = ({ countries, onCountryClicked, onSubmitSearch, error, sea
                 <CountryList countries={countries.slice(0, 20)}  onCountryClicked={onCountryClicked} visitedList={visitedList} onBucketClick={onBucketClick} onVisitedClick={onVisitedClick} />
 
             </div>
+
+            <Footer/>
 
         </>
 
