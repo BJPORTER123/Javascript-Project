@@ -19,9 +19,9 @@ function CountryItem({ country, onCountryClicked, onBucketClick, onVisitedClick}
                 </Link>
             </li>
             <div>
-                <button type="Submit" value='add-to-bucket' onClick={() => onBucketClick(country)}>
+                <button className="button-styling-main" type="Submit" value='add-to-bucket' onClick={() => onBucketClick(country)}>
                     Add Bucket</button>
-                <button type="Submit" value='add-to-visited' onClick={() => onVisitedClick(country)}>Add Visited</button>
+                <button className="button-styling-main" type="Submit" value='add-to-visited' onClick={() => onVisitedClick(country)}>Add Visited</button>
             </div>
         </div>
 

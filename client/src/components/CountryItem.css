@@ -57,3 +57,12 @@
     z-index: 1;
     text-shadow: 1px 1px black, -1px -1px black, 1px -1px black, -1px 1px black;
     }
+
+.button-styling-main{
+    background-color: rgb(68, 147, 231);
+    border-radius: 5px;
+    color: white;
+
+   
+
+}

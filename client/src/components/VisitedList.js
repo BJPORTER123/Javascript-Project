@@ -1,7 +1,7 @@
 import VisitedItem from "./VisitedItem";
 import NavBar from "./NavBar";
 import "./CountryList.css"
-import Footer from "./Footer";
+import Footer from "./Footer.js";
 
 const VisitedList = ({ visitedList,updateVisited, removeVisitedCountry, onCountryClicked }) => {
 
