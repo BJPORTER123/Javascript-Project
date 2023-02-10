@@ -19,8 +19,7 @@ const App = () => {
     const [visitedList, setVisitedList] = useState([])
     const [searchedCountries, setSearchedCountries] = useState([])
     const [error, setError] = useState(null)
-    const [countryAddSuccess, setCountryAddSuccess] = useState(null)
-    const [countryAddError, setCountryAddError] = useState(null)
+    const [countryAddMessage, setCountryAddMessage] = useState(null)
 
 
     useEffect(() => {
@@ -133,13 +132,11 @@ const App = () => {
             postBucketCountry(clickedCountry)
                 .then(() => {
                     addToBucket(clickedCountry)
-                    setCountryAddSuccess('Added to list!')
-                    setCountryAddError(null)
+                    setCountryAddMessage('Added to list!')
                 })
         }
         else if (visitedList.filter(country => country.cca2 === clickedCountry.cca2).length > 0 || bucketList.filter(country => country.cca2 === clickedCountry.cca2).length > 0) {
-            setCountryAddSuccess(null)
-            setCountryAddError(`Can't add, ${clickedCountry.name.common} is already on a list`)
+            setCountryAddMessage(`Can't add, ${clickedCountry.name.common} is already on a list`)
         }
     }
 
@@ -153,15 +150,13 @@ const App = () => {
                     deleteBucketCountry(clickedCountry.cca2)
                         .then(() => {
                             removeBucketCountry(clickedCountry.cca2)
-                            setCountryAddSuccess('Added to list!')
-                            setCountryAddError(null)
+                            setCountryAddMessage('Added to list!')
 
                         })
                 })
         }
         else if (visitedList.filter(country => country.cca2 === clickedCountry.cca2).length > 0 || bucketList.filter(country => country.cca2 === clickedCountry.cca2).length > 0) {
-            setCountryAddSuccess(null)
-            setCountryAddError(`Can't add, ${clickedCountry.name.common} is already on a list`)
+            setCountryAddMessage(`Can't add, ${clickedCountry.name.common} is already on a list`)
         }
     }
 
@@ -173,7 +168,7 @@ const App = () => {
                 <Route exact path="/" element={<Title />} />
 
                 <Route exact path="/countries" element={
-                    <MainContainer countries={countries} onCountryClicked={onCountryClicked} onSubmitSearch={onSubmitSearch} error={error} searchedCountries={searchedCountries} visitedList={visitedList} onBucketClick={onBucketClick} onVisitedClick={onVisitedClick} countryAddSuccess={countryAddSuccess} countryAddError={countryAddError} refreshCountries={refreshCountries} resetSearchedItem={resetSearchedItem}/>
+                    <MainContainer countries={countries} onCountryClicked={onCountryClicked} onSubmitSearch={onSubmitSearch} error={error} searchedCountries={searchedCountries} visitedList={visitedList} onBucketClick={onBucketClick} onVisitedClick={onVisitedClick} countryAddMessage={countryAddMessage} refreshCountries={refreshCountries} resetSearchedItem={resetSearchedItem}/>
                 } />
 
                 <Route exact path="/bucket" element={

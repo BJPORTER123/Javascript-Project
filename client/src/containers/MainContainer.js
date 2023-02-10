@@ -6,7 +6,7 @@ import "./MainContainer.css"
 import '../components/Footer.css'
 
 
-const MainContainer = ({ countries, onCountryClicked, onSubmitSearch, error, searchedCountries, visitedList, onBucketClick, onVisitedClick, countryAddSuccess, countryAddError, refreshCountries, resetSearchedItem}) => {
+const MainContainer = ({ countries, onCountryClicked, onSubmitSearch, error, searchedCountries, visitedList, onBucketClick, onVisitedClick, countryAddMessage, refreshCountries, resetSearchedItem}) => {
 
     return (
         <div id="page-container">
@@ -28,7 +28,7 @@ const MainContainer = ({ countries, onCountryClicked, onSubmitSearch, error, sea
           
             <div>
                 <h3 className="list-title">Country Suggestions</h3>
-                <h4 className='message-button'>{countryAddSuccess}{countryAddError}</h4>
+                <h4 className='message-button'>{countryAddMessage}</h4>
                 <div className="refresh-button">
                     <button  className="button-for-refresh" onClick={refreshCountries}>Load New Countries</button>
                 </div>
