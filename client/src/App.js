@@ -50,28 +50,6 @@ const App = () => {
     }
 
     useEffect(() => {
-        refreshCountries()
-    }, [])
-
-    // ALPHABETICALLY SORTED:
-    // useEffect(() => {
-    //     fetch('https://restcountries.com/v3.1/all')
-    //         .then(res => res.json())
-    //         .then(countries => {
-    //             const sortedCountries = countries.sort((a, b) => {
-    //                 if (a.name.common < b.name.common) {
-    //                     return -1
-    //                 } else if (a.name.common > b.name.common) {
-    //                     return 1
-    //                 }
-    //                 return 0
-    //             })
-    //             console.log(sortedCountries)
-    //             setCountries(sortedCountries)
-    //         })
-    // }, [])
-
-    useEffect(() => {
         getBucketCountries()
             .then(bucketCountries => {
                 setBucketList(bucketCountries)
@@ -80,11 +58,12 @@ const App = () => {
             .then(visitedCountries => {
                 setVisitedList(visitedCountries)
             })
+        refreshCountries()
     }, []);
 
     const resetSearchedItem = () => {
         setSearchCountry(null)
-      }
+    }
 
     const onSubmitSearch = (searchCountry) => {
         setSearchCountry(searchCountry)
@@ -168,19 +147,46 @@ const App = () => {
                 <Route exact path="/" element={<Title />} />
 
                 <Route exact path="/countries" element={
-                    <MainContainer countries={countries} onCountryClicked={onCountryClicked} onSubmitSearch={onSubmitSearch} error={error} searchedCountries={searchedCountries} visitedList={visitedList} onBucketClick={onBucketClick} onVisitedClick={onVisitedClick} countryAddMessage={countryAddMessage} refreshCountries={refreshCountries} resetSearchedItem={resetSearchedItem}/>
+                    <MainContainer
+                        countries={countries}
+                        onCountryClicked={onCountryClicked}
+                        onSubmitSearch={onSubmitSearch}
+                        error={error}
+                        searchedCountries={searchedCountries}
+                        visitedList={visitedList}
+                        onBucketClick={onBucketClick}
+                        onVisitedClick={onVisitedClick}
+                        countryAddMessage={countryAddMessage}
+                        refreshCountries={refreshCountries}
+                        resetSearchedItem={resetSearchedItem} />
                 } />
 
                 <Route exact path="/bucket" element={
-                    <BucketList addToVisited={addToVisited} bucketList={bucketList} onCountryClicked={onCountryClicked} removeBucketCountry={removeBucketCountry} />
+                    <BucketList
+                        addToVisited={addToVisited}
+                        bucketList={bucketList}
+                        onCountryClicked={onCountryClicked}
+                        removeBucketCountry={removeBucketCountry} />
                 } />
 
                 <Route exact path="/visited" element={
-                    <VisitedList updateVisited={updateVisited} visitedList={visitedList} onCountryClicked={onCountryClicked} removeVisitedCountry={removeVisitedCountry} />
+                    <VisitedList
+                        updateVisited={updateVisited}
+                        visitedList={visitedList}
+                        onCountryClicked={onCountryClicked}
+                        removeVisitedCountry={removeVisitedCountry} />
                 } />
 
                 <Route path="/countries/:countryId" element={
-                    <CountryDetail onCountryClicked={onCountryClicked} countries={countries}removeBucketCountry={removeBucketCountry} selectedCountry={selectedCountry} addToBucket={addToBucket} addToVisited={addToVisited} bucketList={bucketList} visitedList={visitedList} />
+                    <CountryDetail
+                        onCountryClicked={onCountryClicked}
+                        countries={countries}
+                        removeBucketCountry={removeBucketCountry}
+                        selectedCountry={selectedCountry}
+                        addToBucket={addToBucket}
+                        addToVisited={addToVisited}
+                        bucketList={bucketList}
+                        visitedList={visitedList} />
                 } />
             </Routes>
         </>
