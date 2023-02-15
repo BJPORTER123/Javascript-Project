@@ -1,10 +1,11 @@
-# Around the World Travel App
+# Around the World Travel App :earth_africa: :earth_americas: :earth_asia:	
 Around the World Travel App is a full stack JavaScript application with an Express server and MongoDB database created as our CodeClan module 2 group project.
 
-## The Team
+## The Team :wave:	
 The team that went Around The World together was [John Aisthorpe](https://github.com/JohnAisthorpe), [Ben Barlow](https://github.com/benbeardyman), [Ben Porter](https://github.com/BJPORTER123) and [Victoria Dorosenco](https://github.com/victometer)
 
-## Our Brief
+## Our Brief :clipboard:	
+
 ### Travel App
 
 We want to create a bucket-list app using a countries api. The app will provide information on countries and allow users to interact through different routes and choose the country they would like to add to their bucket-list. They can also mark countries as visited.
@@ -29,7 +30,7 @@ Bring in more data with multiple APIs.
 users can attain badges for visiting different countries.
 add multiple visits to a country in visited list
 
-## Firing Up The App!
+## Firing Up The App! :fire:
 
 Now for the fun part!! These instructions should get you a copy of the app up and running on your local machine.
 
