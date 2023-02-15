@@ -1,19 +1,45 @@
 # Around the World Travel App
-Around the World Travel App is a full stack JavaScript application with an Express server and MongoDB database.
+Around the World Travel App is a full stack JavaScript application with an Express server and MongoDB database created as our CodeClan module 2 group project.
+
+## The Team
+The team that went Around The World together was [John Aisthorpe](https://github.com/JohnAisthorpe), [Ben Barlow](https://github.com/benbeardyman), [Ben Porter](https://github.com/BJPORTER123) and [Victoria Dorosenco](https://github.com/victometer)
+
+## Our Brief
+### Travel App
+
+We want to create a bucket-list app using a countries api. The app will provide information on countries and allow users to interact through different routes and choose the country they would like to add to their bucket-list. They can also mark countries as visited.
+
+### MVP
+
+A user should be able to: -
+
+Use a country API to bring in content
+view a country and details about that country
+be able to interact with the page to move through different sections of content
+have a drop down list of country that the user uses to pick a country
+allow users to add countries to the visited/want-to-visit list. The list will be stored using mongodb.
+
+### Example Extensions
+
+countries are also searchable (search-bar with timeout?)
+user can add comments about visits they have made.
+implement the use of maps to display the country in a more interactive and interesting way.
+the map will provide navigation around the app instead of a drop-down/list.
+Bring in more data with multiple APIs.
+users can attain badges for visiting different countries.
+add multiple visits to a country in visited list
+
+## Firing Up The App!
+
+Now for the fun part!! These instructions should get you a copy of the app up and running on your local machine.
 
 ### Server
 
-Install server dependencies:
+To install server dependencies:
 
 ```
 cd server
 npm install
-```
-
-Seed the database:
-
-```
-npm run seeds
 ```
 
 Run express:
@@ -29,18 +55,3 @@ cd ../client
 npm install
 npm start
 ```
-
-
-
-
-
-server
-
-npm init -y
-npm install express
-npm mongodb install
-npm run server:dev
-
-client
-npm install
-npm start
