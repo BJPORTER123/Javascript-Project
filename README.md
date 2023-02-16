@@ -37,7 +37,6 @@ add multiple visits to a country in visited list
 * Express.Js
 * MongoDB
 
-
 ## Firing Up The App! :fire:
 
 Now for the fun part!! These instructions should get you a copy of the app up and running on your local machine.
