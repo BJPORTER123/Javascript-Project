@@ -1,8 +1,8 @@
 # Around the World Travel App :earth_africa: :earth_americas: :earth_asia:	
-Around the World Travel App is a full stack JavaScript application with an Express server and MongoDB database created as our CodeClan module 2 group project.
+Around the World Travel App is a country tracking app allowing the user to create a bucket list of countries they want to visit and track where they have already been.It is a full stack JavaScript application built with React using an Express server and MongoDB database created as our CodeClan module 2 group project. 
 
 ## The Team :wave:	
-The team that went Around The World together was [John Aisthorpe](https://github.com/JohnAisthorpe), [Ben Barlow](https://github.com/benbeardyman), [Ben Porter](https://github.com/BJPORTER123) and [Victoria Dorosenco](https://github.com/victometer)
+The team that will take you Around The World together are: [John Aisthorpe](https://github.com/JohnAisthorpe), [Ben Barlow](https://github.com/benbeardyman), [Ben Porter](https://github.com/BJPORTER123) and [Victoria Dorosenco](https://github.com/victometer)
 
 ## Our Brief :clipboard:	
 
@@ -12,23 +12,31 @@ We want to create a bucket-list app using a countries api. The app will provide 
 
 ### MVP
 
-A user should be able to: -
+#### A user should be able to: -
 
-Use a country API to bring in content
-view a country and details about that country
-be able to interact with the page to move through different sections of content
-have a drop down list of country that the user uses to pick a country
-allow users to add countries to the visited/want-to-visit list. The list will be stored using mongodb.
+* Use a country API to bring in content
+* View an individual country and details about that country
+* Be able to interact with the page to move through different sections of content
+* Have a drop down list of country that the user uses to pick a country
+* Allow users to add countries to the visited/want-to-visit list. The list will be stored using mongodb.
 
 ### Example Extensions
 
-countries are also searchable (search-bar with timeout?)
-user can add comments about visits they have made.
-implement the use of maps to display the country in a more interactive and interesting way.
-the map will provide navigation around the app instead of a drop-down/list.
-Bring in more data with multiple APIs.
-users can attain badges for visiting different countries.
+* Countries are also searchable (search-bar with timeout?)
+* User can add comments about visits they have made.
+* Users can attain badges for visiting different countries.
 add multiple visits to a country in visited list
+* Implement the use of maps to display the country in a more interactive and interesting way.
+* Use the map will provide navigation around the app instead of a drop-down/list.
+* Bring in more data with multiple APIs.
+
+## Built With :building_construction:
+* JavaScript
+* React
+* ReactRouter
+* Express.Js
+* MongoDB
+
 
 ## Firing Up The App! :fire:
 
